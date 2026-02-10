@@ -26,7 +26,15 @@ get_header(); ?>
     
     #contact-map {
         width: 100%;
-        height: 100%;
+        height: 400px !important;
+        min-height: 400px;
+    }
+    
+    /* Fix Leaflet map display */
+    .leaflet-container {
+        width: 100%;
+        height: 400px !important;
+        min-height: 400px;
     }
 </style>
 
@@ -92,58 +100,62 @@ get_header(); ?>
                     // Get coordinates from admin
                     $coordinates = forcex_get_contact_coordinates();
                     $marker_icon_url = get_template_directory_uri() . '/assets/img/location.svg';
-                    $api_key = !empty($coordinates['api_key']) ? $coordinates['api_key'] : '';
                     ?>
+
+                    <!-- Leaflet CSS -->
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+                         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+                         crossorigin=""/>
+
                     <div id="contact-map" class="contact-map-container"></div>
-                    
+
+                    <!-- Leaflet JS -->
+                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                         crossorigin=""></script>
+
                     <script>
-                    function initContactMap() {
+                    document.addEventListener('DOMContentLoaded', function() {
                         const coordinates = {
                             lat: <?php echo floatval($coordinates['latitude']); ?>,
                             lng: <?php echo floatval($coordinates['longitude']); ?>
                         };
                         const zoom = <?php echo intval($coordinates['zoom']); ?>;
-                        const markerIconUrl = '<?php echo esc_js($marker_icon_url); ?>';
+    
+                        // Initialize map with scroll zoom disabled
+                        const map = L.map('contact-map', {
+                            scrollWheelZoom: false,
+                            zoomControl: true
+                        }).setView([coordinates.lat, coordinates.lng], zoom);
                         
-                        // Initialize map
-                        const map = new google.maps.Map(document.getElementById('contact-map'), {
-                            center: coordinates,
-                            zoom: zoom,
-                            disableDefaultUI: false,
-                            zoomControl: true,
-                            mapTypeControl: false,
-                            streetViewControl: false,
-                            fullscreenControl: true
-                        });
-                        
+                        // Fix map size after initialization
+                        setTimeout(() => {
+                            map.invalidateSize();
+                        }, 100);
+    
+                        // Add OpenStreetMap tiles
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: 'Â© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                            maxZoom: 19
+                        }).addTo(map);
+    
                         // Create custom marker icon
-                        const markerIcon = {
-                            url: markerIconUrl,
-                            scaledSize: new google.maps.Size(48, 48),
-                            anchor: new google.maps.Point(24, 24)
-                        };
-                        
-                        // Add custom marker at coordinates
-                        const marker = new google.maps.Marker({
-                            position: coordinates,
-                            map: map,
-                            icon: markerIcon,
-                            title: 'ForceX Location'
+                        const customIcon = L.icon({
+                            iconUrl: '<?php echo esc_js($marker_icon_url); ?>',
+                            iconSize: [48, 48],
+                            iconAnchor: [24, 24],
+                            popupAnchor: [0, -24]
                         });
-                    }
-                    
-                    // Load Google Maps API
-                    if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
-                        const script = document.createElement('script');
-                        const apiKey = '<?php echo esc_js($api_key); ?>';
-                        const apiKeyParam = apiKey ? 'key=' + apiKey + '&' : '';
-                        script.src = 'https://maps.googleapis.com/maps/api/js?' + apiKeyParam + 'callback=initContactMap';
-                        script.async = true;
-                        script.defer = true;
-                        document.head.appendChild(script);
-                    } else {
-                        initContactMap();
-                    }
+    
+                        // Add marker
+                        const marker = L.marker([coordinates.lat, coordinates.lng], {
+                            icon: customIcon,
+                            title: 'ForceX Location'
+                        }).addTo(map);
+    
+                        // Optional: Add popup
+                        marker.bindPopup('<strong>ForceX</strong><br>6521 Davis Industrial Pkwy., Unit B<br>Cleveland, OH 44139');
+                    });
                     </script>
                 </div>
             </div>
