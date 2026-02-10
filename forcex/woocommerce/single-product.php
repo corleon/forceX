@@ -121,7 +121,7 @@ get_header('shop');
                             <li><a href="<?php echo home_url(); ?>" class="hover:text-primary-500">Main</a></li>
                             <li class="flex items-center">
                                 <span class="mx-1.5 md:mx-2 text-gray-400">/</span>
-                                <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop')) ?: home_url('/products')); ?>" class="hover:text-primary-500">Our products</a>
+                                <a href="<?php echo home_url('/products'); ?>" class="hover:text-primary-500">Our products</a>
                             </li>
                             <li class="flex items-center">
                                 <span class="mx-1.5 md:mx-2 text-gray-400">/</span>
@@ -305,8 +305,61 @@ get_header('shop');
 
                     <!-- Frequently Bought Together Section -->
                     <?php
-                    // Get cross-sells from WooCommerce
-                    $cross_sell_ids = $product->get_cross_sell_ids();
+                    // Get accessories automatically based on product name
+                    $current_product_name = $product->get_name();
+                    $product_model = ''; // CX3, CX5, or CX9
+                    
+                    // Detect which model this is
+                    if (stripos($current_product_name, 'CX3') !== false) {
+                        $product_model = 'CX3';
+                    } elseif (stripos($current_product_name, 'CX5') !== false) {
+                        $product_model = 'CX5';
+                    } elseif (stripos($current_product_name, 'CX9') !== false) {
+                        $product_model = 'CX9';
+                    }
+                    
+                    // Query for accessories
+                    $accessories_query = new WP_Query(array(
+                        'post_type' => 'product',
+                        'posts_per_page' => -1,
+                        'post_status' => 'publish',
+                        'post__not_in' => array($product->get_id()), // Exclude current product
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'product_cat',
+                                'field' => 'slug',
+                                'terms' => array('accessoires', 'accessories', 'accessoire'),
+                                'operator' => 'IN'
+                            )
+                        )
+                    ));
+                    
+                    // Filter accessories based on model compatibility
+                    $cross_sell_ids = array();
+                    if ($accessories_query->have_posts()) {
+                        while ($accessories_query->have_posts()) {
+                            $accessories_query->the_post();
+                            $accessory_name = get_the_title();
+                            
+                            // Check if accessory has a specific model in its name
+                            $has_cx3 = stripos($accessory_name, 'CX3') !== false;
+                            $has_cx5 = stripos($accessory_name, 'CX5') !== false;
+                            $has_cx9 = stripos($accessory_name, 'CX9') !== false;
+                            $has_any_model = $has_cx3 || $has_cx5 || $has_cx9;
+                            
+                            // Include if:
+                            // 1. No model in name (universal accessory), OR
+                            // 2. Matches current product model
+                            if (!$has_any_model || 
+                                ($product_model === 'CX3' && $has_cx3) ||
+                                ($product_model === 'CX5' && $has_cx5) ||
+                                ($product_model === 'CX9' && $has_cx9)) {
+                                $cross_sell_ids[] = get_the_ID();
+                            }
+                        }
+                        wp_reset_postdata();
+                    }
+                    
                     if (!empty($cross_sell_ids)): ?>
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold mb-6">Frequently bought together</h2>
@@ -329,8 +382,7 @@ get_header('shop');
                                         <div class="flex items-center space-x-3 w-full lg:w-auto">
                                             <input type="checkbox" 
                                                    class="fbt-checkbox w-5 h-5 text-primary-500 border-gray-300 rounded cursor-pointer flex-shrink-0" 
-                                                   data-product-id="<?php echo esc_attr($cross_sell_id); ?>"
-                                                   checked>
+                                                   data-product-id="<?php echo esc_attr($cross_sell_id); ?>">
                                             <div class="flex-shrink-0">
                                                 <?php 
                                                 $cross_sell_thumb = $cross_sell_product->get_image_id();
@@ -1130,18 +1182,12 @@ document.addEventListener('DOMContentLoaded', function() {
             countElement.textContent = itemCount;
         }
         
-        // Disable button if no products selected
+        // Always keep button enabled
         const addAllFbtBtn = document.querySelector('.add-all-fbt-btn');
         if (addAllFbtBtn) {
-            if (itemCount === 0) {
-                addAllFbtBtn.disabled = true;
-                addAllFbtBtn.style.opacity = '0.5';
-                addAllFbtBtn.style.cursor = 'not-allowed';
-            } else {
-                addAllFbtBtn.disabled = false;
-                addAllFbtBtn.style.opacity = '1';
-                addAllFbtBtn.style.cursor = 'pointer';
-            }
+            addAllFbtBtn.disabled = false;
+            addAllFbtBtn.style.opacity = '1';
+            addAllFbtBtn.style.cursor = 'pointer';
         }
     }
     

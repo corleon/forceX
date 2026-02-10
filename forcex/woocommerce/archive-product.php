@@ -85,6 +85,25 @@ get_header('shop');
 							<div class="w-full h-0.5 bg-gray-300 mb-4" style="margin-left: -0.5rem; margin-right: -0.5rem; width: calc(100% + 1rem);"></div>
 
 							<h3 class="title-h3 mb-2"><?php the_title(); ?></h3>
+							<?php
+							// Check if product is an accessory
+							$categories = wp_get_post_terms(get_the_ID(), 'product_cat', array('fields' => 'slugs'));
+							$is_accessory = false;
+							
+							foreach ($categories as $cat_slug) {
+								$cat_slug_lower = strtolower($cat_slug);
+								if ($cat_slug_lower === 'accessoires' || $cat_slug_lower === 'accessories' || 
+									$cat_slug_lower === 'accessoire' || 
+									stripos($cat_slug_lower, 'accessor') !== false || 
+									stripos($cat_slug_lower, 'wrap') !== false) {
+									$is_accessory = true;
+									break;
+								}
+							}
+							
+							// Show description only for non-accessories (devices)
+							if (!$is_accessory) :
+							?>
 							<p class="text-gray-600 text-sm mb-4">
 								<?php
 								$description = $product ? $product->get_short_description() : '';
@@ -94,6 +113,7 @@ get_header('shop');
 								echo wp_trim_words(wp_strip_all_tags($description), 15);
 								?>
 							</p>
+							<?php endif; ?>
 
 							<?php if ($product) : ?>
 								<div class="mb-4" style="font-size: 36px; font-weight: bold; color: black;">

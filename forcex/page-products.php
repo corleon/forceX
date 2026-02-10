@@ -151,6 +151,7 @@ get_header();
                             <?php endif; ?>
                         </h3>
                         
+                        <?php if (!$is_accessory): // Only show description for devices ?>
                         <p class="mb-4" style="color: #303E4E; font-size: 22px;">
                             <?php 
                             $description = $product->get_short_description();
@@ -166,6 +167,7 @@ get_header();
                             echo wp_trim_words(wp_strip_all_tags($description), 15); 
                             ?>
                         </p>
+                        <?php endif; ?>
                         
                         <?php if ($product->get_price()): ?>
                             <div class="mb-4" style="font-size: 36px; font-weight: bold; color: black;">
