@@ -67,23 +67,18 @@ while (have_posts()) : the_post();
                     $products = array(
                         array(
                             'image' => 'n1.png',
-                            'title' => 'ACTIVet Pro',
-                            'description' => 'distal limb ligament and tendon injuries.'
+                            'title' => 'ForceX CX-3',
+                            'description' => 'Compact and powerful compression therapy system for targeted treatment.'
                         ),
                         array(
                             'image' => 'n2.png',
-                            'title' => 'WellVu 320',
-                            'description' => 'A thermal imaging device, intended for use on larger animals.'
+                            'title' => 'ForceX CX-5',
+                            'description' => 'Advanced compression therapy with enhanced features for professional use.'
                         ),
                         array(
                             'image' => 'n1.png',
-                            'title' => 'My Pet Laser 2.0',
-                            'description' => 'Super Pulsed Laser system, ideal for distal limb ligament and tendon injuries.'
-                        ),
-                        array(
-                            'image' => 'n2.png',
-                            'title' => 'WellVu 640',
-                            'description' => 'A thermal imaging device, that can be used to screen all types of animals.'
+                            'title' => 'ForceX CX-9',
+                            'description' => 'Premium compression therapy system with maximum power and versatility.'
                         ),
                     );
                     
@@ -115,7 +110,7 @@ while (have_posts()) : the_post();
         <div class="container-custom max-w-[1200px] mt-20">
             <div class="text-center" style="max-width: 900px; margin: 0 auto;">
                 <p style="font-size: 22px; line-height: 32px; font-weight: 400; letter-spacing: 0%; color: #333;">
-                    From Super Pulsed Laser Therapy and Human TECAR to mPACT Shockwave and WellVu Thermal Imaging, our science-driven approach has redefined how clinicians restore function, relieve pain, and accelerate recovery.
+                    From the compact ForceX CX-3 to the powerful CX-9, our compression therapy systems deliver science-driven results. Our innovative approach has redefined how clinicians restore function, relieve pain, and accelerate recovery.
                 </p>
             </div>
         </div>

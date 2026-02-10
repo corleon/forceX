@@ -429,50 +429,14 @@ get_header();
                 </div>
 
                 <form id="medical-professionals-form" class="forcex-contact-form" data-form-source="medical-professionals">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="medical_professionals_first_name" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                First name *
-                            </label>
-                            <input type="text" id="medical_professionals_first_name" name="first_name" required
-                                   class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                   style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                   placeholder="Your name">
-                        </div>
-                        <div>
-                            <label for="medical_professionals_last_name" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                Last name *
-                            </label>
-                            <input type="text" id="medical_professionals_last_name" name="last_name" required
-                                   class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                   style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                   placeholder="Your name">
-                        </div>
-                        <div>
-                            <label for="medical_professionals_email" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                Email *
-                            </label>
-                            <input type="email" id="medical_professionals_email" name="email" required
-                                   class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                   style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                   placeholder="Email">
-                        </div>
-                        <div>
-                            <label for="medical_professionals_phone" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                Phone number *
-                            </label>
-                            <input type="tel" id="medical_professionals_phone" name="phone" required
-                                   class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                   style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                   placeholder="Phone number">
-                        </div>
-                    </div>
-
-                    <div id="medical-professionals-form-message" class="mb-6 hidden"></div>
-
-                    <button type="submit" class="btn-gradient">
-                        SUBMIT
-                    </button>
+                     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                          <script>
+                            hbspt.forms.create({
+                              portalId: "7594926",
+                              formId: "d696bb67-ddab-4be1-bc3c-cda63f45e280",
+                              region: "na1"
+                            });
+                          </script>
                 </form>
             </div>
         </div>

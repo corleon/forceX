@@ -425,60 +425,14 @@ while (have_posts()) : the_post();
                     </div>
 
                     <form id="clinical-resources-form" class="forcex-contact-form" data-form-source="clinical-resources">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="clinical_first_name" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                    First name *
-                                </label>
-                                <input type="text" id="clinical_first_name" name="first_name" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Your name">
-                            </div>
-                            <div>
-                                <label for="clinical_last_name" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                    Last name *
-                                </label>
-                                <input type="text" id="clinical_last_name" name="last_name" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Your name">
-                            </div>
-                            <div>
-                                <label for="clinical_email" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                    Email *
-                                </label>
-                                <input type="email" id="clinical_email" name="email" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Email">
-                            </div>
-                            <div>
-                                <label for="clinical_phone" class="block text-sm font-medium text-gray-700 mb-2 pl-4">
-                                    Phone number *
-                                </label>
-                                <input type="tel" id="clinical_phone" name="phone" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Phone number">
-                            </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="flex items-start">
-                                <input type="checkbox" name="privacy_policy" required
-                                       class="mt-1 mr-3 w-4 h-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500">
-                                <span class="text-sm text-gray-700">
-                                    I agree to the processing of my personal data as outlined in the <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" class="text-primary-500 hover:underline">Privacy Policy</a>.
-                                </span>
-                            </label>
-                        </div>
-
-                        <div id="clinical-resources-form-message" class="mb-6 hidden"></div>
-
-                        <button type="submit" class="btn-gradient w-full md:w-auto">
-                            SUBMIT
-                        </button>
+                         <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                          <script>
+                            hbspt.forms.create({
+                              portalId: "7594926",
+                              formId: "d696bb67-ddab-4be1-bc3c-cda63f45e280",
+                              region: "na1"
+                            });
+                          </script>
                     </form>
                 </div>
             </div>
