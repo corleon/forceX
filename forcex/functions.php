@@ -658,7 +658,7 @@ function forcex_handle_email_gate() {
         ));
     }
 
-    // New email (no account) – redirect to registration page with email pre-filled
+    // New email (no account) - redirect to registration page with email pre-filled
     // After registration, redirect to checkout step 1
     $login_page = wc_get_page_permalink('myaccount');
     $registration_url = add_query_arg(array(
@@ -4865,14 +4865,14 @@ function forcex_contact_coordinates_meta_box_callback($post) {
         <tr>
             <th style="width: 200px;"><label for="forcex_contact_latitude">Latitude *</label></th>
             <td>
-                <input type="text" id="forcex_contact_latitude" name="forcex_contact_latitude" value="<?php echo esc_attr($latitude); ?>" style="width: 100%; max-width: 300px;" placeholder="41.408903" required />
+                <input type="text" id="forcex_contact_latitude" name="forcex_contact_latitude" value="<?php echo esc_attr($latitude); ?>" style="width: 100%; max-width: 300px;" placeholder="41.3897" required />
                 <p class="description">Map latitude coordinate (e.g., 41.408903)</p>
             </td>
         </tr>
         <tr>
             <th><label for="forcex_contact_longitude">Longitude *</label></th>
             <td>
-                <input type="text" id="forcex_contact_longitude" name="forcex_contact_longitude" value="<?php echo esc_attr($longitude); ?>" style="width: 100%; max-width: 300px;" placeholder="-81.865354" required />
+                <input type="text" id="forcex_contact_longitude" name="forcex_contact_longitude" value="<?php echo esc_attr($longitude); ?>" style="width: 100%; max-width: 300px;" placeholder="-81.4419" required />
                 <p class="description">Map longitude coordinate (e.g., -81.865354)</p>
             </td>
         </tr>
@@ -4946,8 +4946,8 @@ function forcex_get_contact_coordinates($post_id = null) {
     
     if (!$post_id) {
         return array(
-            'latitude' => '41.408903',
-            'longitude' => '-81.865354',
+            'latitude' => '41.3897',
+            'longitude' => '-81.4419',
             'zoom' => '15'
         );
     }
