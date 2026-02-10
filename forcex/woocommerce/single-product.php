@@ -1156,7 +1156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let itemCount = 0;
         
         checkedProducts.forEach(checkbox => {
-            const productRow = checkbox.closest('.flex');
+            const productRow = checkbox.closest('.fbt-item');
             const quantityInput = productRow.querySelector('.fbt-quantity');
             const priceElement = productRow.querySelector('.fbt-price');
             
@@ -1214,7 +1214,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             checkedProducts.forEach(checkbox => {
                 const productId = parseInt(checkbox.getAttribute('data-product-id'));
-                const productRow = checkbox.closest('.flex');
+                const productRow = checkbox.closest('.fbt-item');
                 const quantityInput = productRow.querySelector('.fbt-quantity');
                 const variationSelect = productRow.querySelector('.fbt-variation');
                 const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;

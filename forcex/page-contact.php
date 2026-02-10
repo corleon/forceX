@@ -158,62 +158,14 @@ get_header(); ?>
                 </div>
 
                 <form id="contact-form" class="forcex-contact-form flex flex-col flex-grow" data-form-source="contact">
-                    <div class="space-y-6 mb-6">
-                        <!-- Name and Email Fields in One Row -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Name Field -->
-                            <div>
-                                <label for="contact_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Name *
-                                </label>
-                                <input type="text" id="contact_name" name="name" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Your name">
-                            </div>
-
-                            <!-- Email Field -->
-                            <div>
-                                <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Email *
-                                </label>
-                                <input type="email" id="contact_email" name="email" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Your email">
-                            </div>
-                        </div>
-
-                        <!-- Message Field -->
-                        <div>
-                            <label for="contact_message" class="block text-sm font-medium text-gray-700 mb-2">
-                                Message *
-                            </label>
-                            <textarea id="contact_message" name="message" required rows="6"
-                                      class="w-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
-                                      style="background-color: #EEF2F6; border-radius: 16px; border: none;"
-                                      placeholder="Your message"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Privacy Policy Checkbox -->
-                    <div class="mb-6">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" id="contact_privacy_policy" name="privacy_policy" required
-                                   class="mt-1 w-4 h-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500 flex-shrink-0">
-                            <span class="text-sm text-gray-600">
-                                I agree to the processing of my personal data as outlined in the <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" class="text-primary-500 hover:underline">Privacy Policy</a>.
-                            </span>
-                        </label>
-                    </div>
-
-                    <!-- Form Message -->
-                    <div id="contact-form-message" class="mb-6 hidden"></div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn-gradient w-full mt-auto">
-                        SUBMIT
-                    </button>
+                   <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                   <script>
+                    hbspt.forms.create({
+                      portalId: "7594926",
+                      formId: "d696bb67-ddab-4be1-bc3c-cda63f45e280",
+                      region: "na1"
+                    });
+                   </script>
                 </form>
             </div>
         </div>
