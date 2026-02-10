@@ -1,0 +1,23 @@
+{
+  "assets/img/hometopmobile.png": {
+    "file": "hometopmobile.DOwHiv7j.png",
+    "src": "assets/img/hometopmobile.png"
+  },
+  "assets/img/manhome.BhGFggwh.png": {
+    "file": "manhome.BhGFggwh.vCA1QP6P.png",
+    "src": "assets/img/manhome.BhGFggwh.png"
+  },
+  "src/main.js": {
+    "file": "main.Cz2xDSbw.js",
+    "name": "main",
+    "src": "src/main.js",
+    "isEntry": true,
+    "css": [
+      "main.CjPmxhNk.css"
+    ],
+    "assets": [
+      "manhome.BhGFggwh.vCA1QP6P.png",
+      "hometopmobile.DOwHiv7j.png"
+    ]
+  }
+}

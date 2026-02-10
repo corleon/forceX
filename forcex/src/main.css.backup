@@ -1,0 +1,640 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utility classes */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-primary-500 text-primary-500 px-6 py-3 rounded-lg font-semibold hover:bg-primary-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200;
+  }
+  
+  .btn-outline {
+    @apply border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-card p-6;
+  }
+  
+  .container-custom {
+    @apply max-w-container mx-auto px-6;
+  }
+  
+  .step {
+    @apply flex items-center justify-center rounded-full  text-gray-500 font-semibold cursor-pointer transition-all duration-200;
+  }
+  
+  
+  .step .completed {
+    @apply bg-primary-500 text-white px-4 py-2 rounded-full;
+  }
+  
+ 
+  
+  .checkout-stepper {
+    @apply flex items-center justify-between mx-auto;
+  }
+  
+  .checkout-stepper .step {
+    @apply flex items-center space-y-2;
+  }
+  
+  .checkout-stepper .step-number {
+    @apply w-10 h-10 rounded-full border-2 border-gray-300 text-gray-500 font-semibold flex items-center justify-center transition-all duration-200;
+  }
+  
+  
+  .checkout-stepper .step.completed .step-number {
+    @apply border-primary-500 bg-primary-500 text-white;
+  }
+  
+ 
+  
+  .checkout-stepper .step-label {
+    @apply text-sm text-gray-600 font-medium;
+  }
+  
+  
+  .checkout-stepper .step.completed .step-label {
+    @apply text-primary-600;
+  }
+  
+  .modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50;
+  }
+  
+  .modal-content {
+    @apply bg-white rounded-2xl p-8 max-w-md w-full mx-4;
+  }
+  
+  .drawer {
+    @apply fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-40;
+  }
+  
+  .drawer.open {
+    @apply translate-x-0;
+  }
+  
+  .drawer.closed {
+    @apply translate-x-full;
+  }
+  
+  /* Checkout Stepper Styles */
+  .checkout-stepper {
+    @apply bg-gray-100 rounded-lg p-4 mb-8 flex items-center justify-center gap-2 flex-nowrap w-fit mx-auto transition-all duration-300;
+  }
+  
+  .checkout-stepper .step {
+    @apply cursor-pointer transition-all duration-300 ease-in-out flex items-center whitespace-nowrap flex-shrink-0 relative;
+  }
+  
+  .checkout-stepper .step:hover:not(.locked) {
+    @apply transform scale-105;
+  }
+  
+  .checkout-stepper .active .step-number {
+    @apply bg-primary-500 text-white px-4 py-2 rounded-full shadow-lg;
+    animation: pulse 2s infinite;
+  }
+  
+ 
+ 
+  
+  .checkout-stepper .locked .step-text {
+    @apply text-gray-400 cursor-not-allowed;
+  }
+  
+  .step-number {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold mr-2;
+    @apply bg-gray-300 text-white transition-all duration-300;
+  }
+  
+  .step-text {
+    @apply text-gray-800 transition-colors duration-300;
+  }
+  
+ 
+  
+  .checkout-stepper .divider {
+    @apply text-gray-400 transition-colors duration-300;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  
+  /* Step content transitions */
+  .step-content {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Field error states */
+  .field-error {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  /* Loading button states */
+  .btn-primary:disabled {
+    @apply opacity-75 cursor-not-allowed;
+  }
+  
+  /* Form validation states */
+  .form-row input:invalid:not(:focus) {
+    @apply border-red-300;
+  }
+  
+  .form-row input:valid:not(:focus) {
+    @apply border-green-300;
+  }
+  
+  
+  .skip-link {
+    @apply absolute -top-full left-6 bg-primary-500 text-white px-4 py-2 rounded-lg z-50 focus:top-6;
+  }
+  
+  .screen-reader-text {
+    @apply sr-only;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  .animate-checkmark-pop {
+    animation: checkmarkPop 0.5s ease-out;
+  }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes checkmarkPop {
+  0% { 
+    transform: scale(0); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+}
+
+/* WooCommerce specific styles */
+.woocommerce-page .woocommerce {
+  @apply max-w-none;
+}
+
+.woocommerce-page .woocommerce-message,
+.woocommerce-page .woocommerce-error,
+.woocommerce-page .woocommerce-info {
+  @apply bg-primary-50 border border-primary-200 text-primary-800 rounded-lg p-4 mb-6;
+}
+
+.woocommerce-page .woocommerce-error {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+
+.woocommerce-page .woocommerce-info {
+  @apply bg-blue-50 border-blue-200 text-blue-800;
+}
+
+/* Form styles */
+.woocommerce-page input[type="text"],
+.woocommerce-page input[type="email"],
+.woocommerce-page input[type="tel"],
+.woocommerce-page input[type="password"],
+.woocommerce-page select,
+.woocommerce-page textarea {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+}
+
+.woocommerce-page .form-row {
+  @apply mb-4;
+}
+
+.woocommerce-page .form-row.woocommerce-validated input:invalid {
+  @apply border-red-500 focus:ring-red-500;
+}
+
+.woocommerce-page .form-row.woocommerce-validated input:valid {
+  @apply border-green-500 focus:ring-green-500;
+}
+
+/* Product grid */
+.products-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.product-card {
+  @apply card hover:shadow-lg transition-shadow duration-200;
+}
+
+/* Quantity button styles */
+.quantity-btn {
+  @apply transition-all duration-150 ease-in-out;
+}
+
+.quantity-btn:hover {
+  @apply bg-gray-100 scale-105;
+}
+
+.quantity-btn:active {
+  @apply scale-95;
+}
+
+.product-card img {
+  @apply w-full h-64 object-cover rounded-lg mb-4;
+}
+
+.product-card h3 {
+  @apply text-lg font-semibold text-gray-900 mb-2;
+}
+
+.product-card .price {
+  @apply text-xl font-bold text-primary-500 mb-4;
+}
+
+/* Cart styles */
+.cart-item {
+  @apply flex items-center space-x-4 py-4 border-b border-gray-200;
+}
+
+.cart-item img {
+  @apply w-16 h-16 object-cover rounded-lg;
+}
+
+.cart-item-details {
+  @apply flex-1;
+}
+
+.cart-item-title {
+  @apply font-semibold text-gray-900;
+}
+
+.cart-item-attributes {
+  @apply text-sm text-gray-500;
+}
+
+.cart-item-price {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+/* Checkout stepper - additional styles */
+.checkout-stepper {
+  @apply space-x-4;
+}
+
+ 
+
+/* Events Page Styles */
+.events-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.event-card {
+  @apply bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300;
+}
+
+.event-card:hover {
+  @apply transform -translate-y-1;
+}
+
+.event-filter-btn {
+  @apply px-6 py-3 rounded-full font-semibold transition-all duration-200;
+}
+
+.event-filter-btn.active {
+  @apply bg-primary-500 text-white hover:bg-primary-600;
+}
+
+.event-filter-btn:not(.active) {
+  @apply bg-white text-gray-700 border border-gray-300 hover:bg-gray-50;
+}
+
+.event-type-badge {
+  @apply px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+}
+
+.event-type-badge.exhibitions {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.event-type-badge.conferences {
+  @apply bg-green-100 text-green-800;
+}
+
+.event-type-badge.trade-shows {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.event-type-badge.webinars {
+  @apply bg-orange-100 text-orange-800;
+}
+
+/* Event card animations */
+.event-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.event-card:nth-child(1) { animation-delay: 0.1s; }
+.event-card:nth-child(2) { animation-delay: 0.2s; }
+.event-card:nth-child(3) { animation-delay: 0.3s; }
+.event-card:nth-child(4) { animation-delay: 0.4s; }
+.event-card:nth-child(5) { animation-delay: 0.5s; }
+.event-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Filter button hover effects */
+.event-filter-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.event-filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.event-filter-btn:hover::before {
+  left: 100%;
+}
+
+/* Event card image overlay effect */
+.event-card .relative::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.event-card:hover .relative::after {
+  opacity: 1;
+}
+
+/* Single Event Page Styles */
+.prose {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply text-gray-900 font-bold;
+}
+
+.prose h1 {
+  @apply text-3xl mb-6;
+}
+
+.prose h2 {
+  @apply text-2xl mb-4;
+}
+
+.prose h3 {
+  @apply text-xl mb-3;
+}
+
+.prose p {
+  @apply mb-4;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose a {
+  @apply text-primary-500 hover:text-primary-600 underline;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary-500 pl-4 italic text-gray-600 my-6;
+}
+
+.prose img {
+  @apply rounded-lg shadow-md my-6;
+}
+
+/* Event sidebar sticky positioning */
+.sticky {
+  position: sticky;
+  top: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container-custom {
+    @apply px-4;
+  }
+  
+  .drawer {
+    @apply w-full;
+  }
+  
+  .checkout-stepper {
+    @apply flex-nowrap overflow-x-auto pb-2;
+    gap: 4px;
+    padding: 12px 8px;
+  }
+  
+  .checkout-stepper .step {
+    @apply flex-shrink-0;
+    min-width: fit-content;
+  }
+  
+  .checkout-stepper .step-text {
+    @apply text-xs;
+    display: none;
+  }
+  
+  .checkout-stepper .step-number {
+    @apply w-8 h-8 text-xs mr-1;
+  }
+  
+  .checkout-stepper .divider {
+    @apply text-xs;
+  }
+  
+  .checkout-stepper .step:not(:last-child)::after {
+    @apply hidden;
+  }
+  
+  /* Mobile form improvements */
+  .step-content .card {
+    @apply p-4;
+  }
+  
+  .step-content .grid {
+    @apply grid-cols-1 gap-4;
+  }
+  
+  .step-content .form-row {
+    @apply mb-4;
+  }
+  
+  .step-content .btn-primary,
+  .step-content .btn-outline {
+    @apply w-full text-center py-4 text-base;
+  }
+  
+  /* Mobile delivery options */
+  .step-content label {
+    @apply p-3;
+  }
+  
+  .step-content label div {
+    @apply text-sm;
+  }
+  
+  /* Mobile payment options */
+  .step-content .space-y-4 > label {
+    @apply p-3;
+  }
+  
+  /* Mobile order summary */
+  .lg\:col-span-1 {
+    @apply order-first mb-6;
+  }
+  
+  .lg\:col-span-2 {
+    @apply order-last;
+  }
+  
+  /* Events page mobile styles */
+  .event-filter-btn {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .events-grid {
+    @apply grid-cols-1 gap-6;
+  }
+  
+  .event-card {
+    @apply mx-2;
+  }
+  
+  .event-card .p-6 {
+    @apply p-4;
+  }
+  
+  .event-card h3 {
+    @apply text-lg;
+  }
+  
+  .event-type-badge {
+    @apply px-2 py-1 text-xs;
+  }
+  
+  /* Single event mobile styles */
+  .prose h1 {
+    @apply text-2xl;
+  }
+  
+  .prose h2 {
+    @apply text-xl;
+  }
+  
+  .prose h3 {
+    @apply text-lg;
+  }
+  
+  .sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-stepper {
+    @apply px-2 py-3;
+    gap: 2px;
+  }
+  
+  .checkout-stepper .step-number {
+    @apply w-6 h-6 text-xs;
+  }
+  
+  .checkout-stepper .divider {
+    @apply text-xs mx-1;
+  }
+  
+  .step-content h2 {
+    @apply text-xl;
+  }
+  
+  .step-content .card {
+    @apply p-3;
+  }
+}
