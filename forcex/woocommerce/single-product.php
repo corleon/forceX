@@ -404,7 +404,7 @@ get_header('shop');
                                                             data-product-id="<?php echo esc_attr($cross_sell_id); ?>">
                                                         <option value="">Select option</option>
                                                         <option value="s-m">S/M</option>
-                                                        <option value="straight">Straight</option>
+                                                        <option value="l-xl">L/XL</option>
                                                     </select>
                                                 <?php endif; ?>
                                             </div>
@@ -508,7 +508,7 @@ get_header('shop');
                 ?>
                     <!-- Reviews Slider -->
                     <div class="relative">
-                        <div class="overflow-hidden">
+                        <div class="overflow-hidden product-reviews-slider-container" style="touch-action: pan-y;">
                             <div class="home-reviews-slider-track" id="product-reviews-slider-track">
                                 <?php foreach ($review_pairs as $pair) : ?>
                                     <div class="home-reviews-slide w-full flex-shrink-0 px-2">
@@ -1343,6 +1343,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 updateProductReviewsSlider();
             });
+            
+            // Touch/swipe support for mobile (desktop unchanged)
+            const productReviewsContainer = document.querySelector('.product-reviews-slider-container');
+            if (productReviewsContainer) {
+                let touchStartX = 0, touchEndX = 0;
+                productReviewsContainer.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                productReviewsContainer.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            currentSlide = currentSlide < totalSlides - 1 ? currentSlide + 1 : 0;
+                        } else {
+                            currentSlide = currentSlide > 0 ? currentSlide - 1 : totalSlides - 1;
+                        }
+                        updateProductReviewsSlider();
+                    }
+                }, { passive: true });
+            }
             
             // Initialize
             updateProductReviewsSlider();
