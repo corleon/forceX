@@ -216,7 +216,7 @@ get_header();
             <div class="text-center mb-12">
                 <h2 class="title-h2 mb-6">Technology</h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed" style="font-size: 18px;">
-                    At ForceX™, we are redefining recovery through innovation. Our advanced therapy systems combine Cryothermic Dynamic Compression (CDC Tech™) with intelligent temperature control to deliver clinically effective heat and cold treatments – without the need for ice or bulky equipment.
+                    At ForceX™, we are redefining recovery through innovation. Our advanced therapy systems combine Cryothermic Dynamic Compression (CDC Tech™) with intelligent temperature control to deliver clinically effective heat and cold treatments - without the need for ice or bulky equipment.
                 </p>
             </div>
 

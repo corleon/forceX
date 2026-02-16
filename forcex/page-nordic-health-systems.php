@@ -66,17 +66,17 @@ while (have_posts()) : the_post();
                     // Product data
                     $products = array(
                         array(
-                            'image' => 'n1.png',
+                            'image' => '1.jpg',
                             'title' => 'ForceX CX-3',
                             'description' => 'Compact and powerful compression therapy system for targeted treatment.'
                         ),
                         array(
-                            'image' => 'n2.png',
+                            'image' => '1.jpg',
                             'title' => 'ForceX CX-5',
                             'description' => 'Advanced compression therapy with enhanced features for professional use.'
                         ),
                         array(
-                            'image' => 'n1.png',
+                            'image' => '2.jpg',
                             'title' => 'ForceX CX-9',
                             'description' => 'Premium compression therapy system with maximum power and versatility.'
                         ),
@@ -688,71 +688,14 @@ while (have_posts()) : the_post();
 
                     <!-- Form -->
                     <form id="partner-form" class="forcex-contact-form" data-form-source="partner">
-                        <!-- Form Fields Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <!-- First Name -->
-                            <div>
-                                <label for="partner_first_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    First name *
-                                </label>
-                                <input type="text" id="partner_first_name" name="first_name" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Your name">
-                            </div>
-
-                            <!-- Last Name -->
-                            <div>
-                                <label for="partner_last_name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Last name *
-                                </label>
-                                <input type="text" id="partner_last_name" name="last_name" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Your name">
-                            </div>
-
-                            <!-- Email -->
-                            <div>
-                                <label for="partner_email" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Email *
-                                </label>
-                                <input type="email" id="partner_email" name="email" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Email">
-                            </div>
-
-                            <!-- Phone Number -->
-                            <div>
-                                <label for="partner_phone" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Phone number *
-                                </label>
-                                <input type="tel" id="partner_phone" name="phone" required
-                                       class="w-full px-4 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                       style="background-color: #EEF2F6; border-radius: 32px; height: 48px; border: none;"
-                                       placeholder="Phone number">
-                            </div>
-                        </div>
-
-                        <!-- Privacy Policy Checkbox -->
-                        <div class="mb-6">
-                            <label class="flex items-start gap-3 cursor-pointer">
-                                <input type="checkbox" id="partner_privacy_policy" name="privacy_policy" required
-                                       class="mt-1 w-4 h-4 text-primary-500 border-gray-300 rounded focus:ring-primary-500 flex-shrink-0">
-                                <span class="text-sm text-gray-600">
-                                    I agree to the processing of my personal data as outlined in the <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" class="text-primary-500 hover:underline">Privacy Policy</a>.
-                                </span>
-                            </label>
-                        </div>
-
-                        <!-- Form Message -->
-                        <div id="partner-form-message" class="mb-6 hidden"></div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn-gradient w-full">
-                            SUBMIT
-                        </button>
+                       <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                          <script>
+                            hbspt.forms.create({
+                              portalId: "7594926",
+                              formId: "d696bb67-ddab-4be1-bc3c-cda63f45e280",
+                              region: "na1"
+                            });
+                          </script>
                     </form>
                 </div>
             </div>

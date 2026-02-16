@@ -159,7 +159,7 @@
             <div class="footer-bottom-content">
                 <!-- Left: Copyright and Legal Links -->
                 <div class="footer-legal">
-                    <p class="copyright-text">© 2025 Nordic Health Systems, LLC. ForceX</p>
+                    <p class="copyright-text">© 2026 Nordic Health Systems, LLC. ForceX</p>
                     <div class="footer-legal-links">
                         <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>">Privacy Policy</a>
                         <a href="<?php echo esc_url(home_url('/terms-of-service')); ?>">Terms of Service</a>

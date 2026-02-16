@@ -2266,6 +2266,38 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSlider()
         })
         
+        // Add touch/swipe support for mobile
+        const heroSlider = document.querySelector('.hero-product-slider')
+        if (heroSlider) {
+            let touchStartX = 0
+            let touchEndX = 0
+            
+            heroSlider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX
+            }, { passive: true })
+            
+            heroSlider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX
+                handleSwipe()
+            }, { passive: true })
+            
+            function handleSwipe() {
+                const swipeThreshold = 50
+                const diff = touchStartX - touchEndX
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next slide
+                        currentSlide = (currentSlide + 1) % totalSlides
+                    } else {
+                        // Swipe right - previous slide
+                        currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1
+                    }
+                    updateSlider()
+                }
+            }
+        }
+        
         // Auto-play slider (optional)
         let autoPlayInterval = setInterval(() => {
             currentSlide = (currentSlide + 1) % totalSlides
@@ -2364,6 +2396,35 @@ document.addEventListener('DOMContentLoaded', function() {
                         updateReviewsSlider()
                     }, 5000)
                 })
+                
+                // Add touch/swipe support for mobile
+                let touchStartX = 0
+                let touchEndX = 0
+                
+                reviewsSlider.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX
+                }, { passive: true })
+                
+                reviewsSlider.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX
+                    handleReviewsSwipe()
+                }, { passive: true })
+                
+                function handleReviewsSwipe() {
+                    const swipeThreshold = 50
+                    const diff = touchStartX - touchEndX
+                    
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            // Swipe left - next slide
+                            currentSlide = (currentSlide + 1) % totalSlides
+                        } else {
+                            // Swipe right - previous slide
+                            currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1
+                        }
+                        updateReviewsSlider()
+                    }
+                }
             }
             
             // Initialize slider
@@ -2532,6 +2593,46 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 250)
         })
         
+        // Add touch/swipe support for mobile
+        const homeReviewsContainer = document.querySelector('.reviews-slider-container, .testimonials-section')
+        if (homeReviewsContainer) {
+            let touchStartX = 0
+            let touchEndX = 0
+            
+            homeReviewsContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX
+            }, { passive: true })
+            
+            homeReviewsContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX
+                handleHomeReviewsSwipe()
+            }, { passive: true })
+            
+            function handleHomeReviewsSwipe() {
+                const swipeThreshold = 50
+                const diff = touchStartX - touchEndX
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next slide
+                        if (isDesktopView() && totalSlidesDesktop > 1) {
+                            currentSlideDesktop = (currentSlideDesktop + 1) % totalSlidesDesktop
+                        } else if (!isDesktopView() && totalSlidesMobile > 1) {
+                            currentSlideMobile = (currentSlideMobile + 1) % totalSlidesMobile
+                        }
+                    } else {
+                        // Swipe right - previous slide
+                        if (isDesktopView() && totalSlidesDesktop > 1) {
+                            currentSlideDesktop = currentSlideDesktop === 0 ? totalSlidesDesktop - 1 : currentSlideDesktop - 1
+                        } else if (!isDesktopView() && totalSlidesMobile > 1) {
+                            currentSlideMobile = currentSlideMobile === 0 ? totalSlidesMobile - 1 : currentSlideMobile - 1
+                        }
+                    }
+                    updateHomeReviewsSlider()
+                }
+            }
+        }
+        
         // Initialize slider
         updateHomeReviewsSlider()
         
@@ -2651,6 +2752,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Prev button clicked, currentSlide after:', currentSlide)
                 updateArticlesSlider()
             })
+            
+            // Add touch/swipe support for mobile
+            const articlesContainer = articlesSliderTrack.closest('section') || articlesSliderTrack.parentElement
+            if (articlesContainer) {
+                let touchStartX = 0
+                let touchEndX = 0
+                
+                articlesContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX
+                }, { passive: true })
+                
+                articlesContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX
+                    handleArticlesSwipe()
+                }, { passive: true })
+                
+                function handleArticlesSwipe() {
+                    const swipeThreshold = 50
+                    const diff = touchStartX - touchEndX
+                    
+                    if (Math.abs(diff) > swipeThreshold) {
+                        const maxSlide = getMaxSlideIndex()
+                        if (diff > 0) {
+                            // Swipe left - next slide
+                            currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1
+                        } else {
+                            // Swipe right - previous slide
+                            currentSlide = currentSlide === 0 ? maxSlide : currentSlide - 1
+                        }
+                        updateArticlesSlider()
+                    }
+                }
+            }
             
             // Initialize slider
             updateArticlesSlider()
