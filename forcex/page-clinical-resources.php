@@ -64,7 +64,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'Force X mirrors the studied model: controlled cold + dynamic compression. This positions Force X as more than a cold pack — it is a clinical cryocompression system engineered for optimized early-stage recovery.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Compressive cryotherapy versus cryotherapy alone in patients undergoing knee surgery. (PMID: 27462522 / PubMed)',
+                'box_right' => 'Compressive cryotherapy versus cryotherapy alone in patients undergoing knee surgery. (PMID: 27462522)',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/27462522/',
             ),
             array(
                 'title' => 'Cryotherapy with Dynamic Compression',
@@ -76,7 +77,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'The compression component matters. Force X\'s dynamic, regulated compression helps reduce analgesic load — which supports faster, less painful recovery.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Cryotherapy with dynamic intermittent compression for analgesia after ACLR. (PMID: 24679367 / PubMed)',
+                'box_right' => 'Cryotherapy with dynamic intermittent compression for analgesia after ACLR. (PMID: 24679367)',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/24679367/',
             ),
             array(
                 'title' => 'Compressive Cryotherapy After Hip Arthroscopy',
@@ -88,7 +90,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'Dynamic compression + cooling, as delivered by Force X, supports earlier pain relief in the critical early rehab phase. Quicker discharge potential aligns with improved patient flow.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Compressive cryotherapy vs cryotherapy alone after hip arthroscopy. (OUP Academic / J Hip Preserv Surg. 2019)',
+                'box_right' => 'Compressive cryotherapy vs cryotherapy alone after hip arthroscopy. (J Hip Preserv Surg. 2019)',
+                'study_link' => 'https://academic.oup.com/jhps/article/6/4/364/5610188',
             ),
             array(
                 'title' => 'Cryocompression After Hip Arthroplasty',
@@ -100,7 +103,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'This supports using combined cooling + compression rather than compression alone — matching Force X\'s approach. Force X\'s regulated compression may assist in reducing bleeding and hemorrhage risk.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Cryocompression therapy after elective arthroplasty of the hip. (PMID: 23112075 / PubMed)',
+                'box_right' => 'Cryocompression therapy after elective arthroplasty of the hip. (PMID: 23112075)',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/23112075/',
             ),
             array(
                 'title' => 'Compressive Cryotherapy After Knee Surgery',
@@ -112,7 +116,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'Force X\'s combination of regulated cooling + dynamic compression supports the clinical benefit of this approach in early rehab. The greatest benefit is in the early post-surgical period.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Compressive cryotherapy versus cryotherapy alone — meta-analysis. (PMID: 27462522 / PubMed)',
+                'box_right' => 'Compressive cryotherapy versus cryotherapy alone — meta-analysis. (PMID: 27462522)',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/27462522/',
             ),
             array(
                 'title' => 'Cryopneumatic Device vs Ice Packs',
@@ -124,7 +129,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'Regulated compression + cooling — core technology in Force X — can deliver measurable benefit in early post-surgical pain relief. Force X\'s compression may contribute to less joint effusion and faster recovery.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Comparison of a Cryopneumatic Compression Device and Ice Packs. (PMID: 37008961 / PubMed)',
+                'box_right' => 'Comparison of a Cryopneumatic Compression Device and Ice Packs. (PMID: 37008961)',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/37008961/',
             ),
             array(
                 'title' => 'Alternating Heat and Cold Stimulation',
@@ -137,6 +143,7 @@ while (have_posts()) : the_post();
                 'box_left' => 'Switching between thermal states with controlled devices can measurably soften muscle tissue — a mechanism Force X leverages via cold + compression and optionally heat control.',
                 'box_right_title' => 'Study Referenced',
                 'box_right' => 'Effects of alternating heat and cold stimulation using a wearable thermo-device. (J Physiol Anthropol. 2022)',
+                'study_link' => 'https://jphysiolanthropol.biomedcentral.com/articles/10.1186/s40101-021-00275-9',
             ),
             array(
                 'title' => 'Cold, Heat and Contrast Pressure Therapy',
@@ -148,7 +155,8 @@ while (have_posts()) : the_post();
                 'box_left_title' => 'What it Means for Force X',
                 'box_left' => 'Controlled thermal protocols matter for tissue mechanics — Force X\'s regulated cooling and optionally heat helps maintain and improve tissue elasticity for better recovery.',
                 'box_right_title' => 'Study Referenced',
-                'box_right' => 'Acute effects of cold, heat and contrast pressure therapy on muscle regeneration. (Nature / Sci Rep. 2024)',
+                'box_right' => 'Acute effects of cold, heat and contrast pressure therapy on muscle regeneration. (Sci Rep. 2024)',
+                'study_link' => 'https://www.nature.com/articles/s41598-024-72412-0',
             ),
         );
         $total_evidence_slides = count($clinical_evidence_slides);
@@ -190,10 +198,16 @@ while (have_posts()) : the_post();
                                             <h5 class="text-base font-semibold text-gray-900 mb-2"><?php echo esc_html($slide['box_left_title']); ?></h5>
                                             <p class="text-gray-600 text-sm leading-relaxed"><?php echo esc_html($slide['box_left']); ?></p>
                                         </div>
-                                        <!-- Box Right -->
+                                        <!-- Box Right: Study Referenced with link -->
                                         <div class="rounded-xl p-5 md:p-5" style="background-color: #f0f5fa;">
                                             <h5 class="text-base font-semibold text-gray-900 mb-2"><?php echo esc_html($slide['box_right_title']); ?></h5>
-                                            <p class="text-gray-600 text-sm leading-relaxed"><?php echo esc_html($slide['box_right']); ?></p>
+                                            <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo esc_html($slide['box_right']); ?></p>
+                                            <?php if (!empty($slide['study_link'])): ?>
+                                                <a href="<?php echo esc_url($slide['study_link']); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-medium hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #25AAE1 0%, #004F8C 100%);">
+                                                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                                    VIEW STUDY
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
 
@@ -1198,16 +1212,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function handleEvidenceNav(direction) {
                 if (direction === 'next') {
-                    // Loop back to first slide after last
                     currentEvidenceSlide = (currentEvidenceSlide + 1) % totalEvidenceSlides;
                 } else {
-                    // Loop to last slide from first
                     currentEvidenceSlide = currentEvidenceSlide === 0 ? totalEvidenceSlides - 1 : currentEvidenceSlide - 1;
                 }
                 updateClinicalEvidenceSlider();
             }
             
-            // Autoplay: advances to next slide, loops infinitely
             function startEvidenceAutoplay() {
                 stopEvidenceAutoplay();
                 evidenceAutoplayTimer = setInterval(function() {
@@ -1222,13 +1233,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Reset autoplay timer on manual interaction (so it doesn't jump right after click)
             function resetEvidenceAutoplay() {
                 stopEvidenceAutoplay();
                 startEvidenceAutoplay();
             }
             
             clinicalEvidenceTrack.addEventListener('click', function(e) {
+                // Don't reset autoplay if clicking a study link
+                if (e.target.closest('a[href]')) return;
+                
                 if (e.target.closest('.clinical-evidence-prev')) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -1259,7 +1272,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }, { passive: true });
                 
-                // Pause autoplay on hover, resume on mouse leave
+                // Pause on hover, resume on leave
                 evidenceContainer.addEventListener('mouseenter', function() {
                     stopEvidenceAutoplay();
                 });
@@ -1268,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             
-            // Pause autoplay when tab is not visible (saves resources)
+            // Pause when tab not visible
             document.addEventListener('visibilitychange', function() {
                 if (document.hidden) {
                     stopEvidenceAutoplay();
