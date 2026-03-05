@@ -53,110 +53,147 @@ while (have_posts()) : the_post();
 
         <!-- Clinical Evidence Supporting Force X Therapy Slider -->
         <?php
+        // Each slide has: title, study_ref, study_link, rows (array of finding/meaning pairs with optional link), why_title, why_text
         $clinical_evidence_slides = array(
+            // ── SLIDE 1 — Sadoghi et al., 2018 ──
             array(
                 'title' => 'Hot & Cold Compression Therapy',
-                'study_ref' => 'Sadoghi P, Hasenhütl S, Gruber G, et al. Impact of a new cryotherapy device on early rehabilitation after primary total knee arthroplasty. Int Orthop. 2018.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'Patients who received compressive cryotherapy (cold + intermittent compression) demonstrated improved outcomes during the early rehabilitation phase after knee surgery compared to patients who received cooling alone. The study highlights that compression provides additional value beyond cooling alone, particularly in the immediate post-operative period.',
-                'why_forcex_title' => 'Why Force X Is Clinically Supported',
-                'why_forcex' => 'The randomized study demonstrates that combining compression with cryotherapy enhances early rehabilitation outcomes after knee surgery. Force X replicates this evidence-based model by delivering Cold Control + Dynamic Compression + Optimized Recovery Protocols. Force X aligns with clinically validated principles shown to improve early post-operative recovery.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'Force X mirrors the studied model: controlled cold + dynamic compression. This positions Force X as more than a cold pack — it is a clinical cryocompression system engineered for optimized early-stage recovery.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Compressive cryotherapy versus cryotherapy alone in patients undergoing knee surgery. (PMID: 27462522)',
-                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/27462522/',
+                'study_ref' => 'Sadoghi P, Hasenhütl S, Gruber G, et al. Impact of a new cryotherapy device on early rehabilitation after primary total knee arthroplasty: a prospective randomised controlled trial. Int Orthop. 2018.',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/29356932/',
+                'col_left_title' => 'Clinical Finding (Sadoghi et al., 2018)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('+7° improvement in knee ROM by Day 6 using controlled cryotherapy versus standard cold packs', '', 'Force X provides consistent, regulated cooling—mirroring the controlled approach shown to improve mobility during early rehabilitation.'),
+                    array('Significantly lower motion-related pain on Day 2 (p = 0.034)', '', 'Force X delivers stable temperature and compression, helping reduce pain early when patients typically experience the most discomfort.'),
+                    array('No differences in swelling or medication use', '', 'Demonstrates that outcomes are driven by precise thermal control, not by ice alone. Force X eliminates temperature variability inherent in traditional cold packs.'),
+                    array('No adverse events reported with device-based cryotherapy', '', 'Force X aligns with safety profiles seen in clinical trials and supports confident use in both clinic and home settings.'),
+                    array('Better functional recovery in the acute post-op period', '', 'Early improvements in ROM and pain support better adherence to rehab plans—the same advantages Force X is designed to deliver.'),
+                ),
+                'why_title' => 'Why Force X Is Clinically Supported',
+                'why_text' => 'The study by Sadoghi and colleagues demonstrated that controlled, consistent cryotherapy leads to meaningful improvements in pain and mobility following orthopedic surgery. Force X applies these same principles through its automated temperature control, dynamic compression, and hands-free design, giving clinicians and patients the therapeutic advantages shown in randomized clinical trials—without the inconsistency of ice packs. Force X ensures the right temperature, pressure, and duration, every time.',
             ),
+            // ── SLIDE 2 — Murgier & Cassard, 2014 ──
             array(
-                'title' => 'Cryotherapy with Dynamic Compression',
+                'title' => 'Cryotherapy with Dynamic Intermittent Compression',
                 'study_ref' => 'Murgier J, Cassard X. Cryotherapy with dynamic intermittent compression for analgesia after anterior cruciate ligament reconstruction. Orthop Traumatol Surg Res. 2014;100(3):309-312.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'Patients using cryotherapy + dynamic intermittent compression required approximately 57.5 mg tramadol versus 128.6 mg in the static compression group (P = 0.023). Mean knee flexion at discharge was 90.5° in the dynamic group versus 84.5° in the static group (P = 0.0015).',
-                'why_forcex_title' => 'Why Force X Is Backed by Clinical Data',
-                'why_forcex' => 'Adding dynamic intermittent compression to cryotherapy significantly decreases pain medication use and improves knee flexion compared to static compression alone. Force X is built around the same principles — combining precise temperature control, active intermittent compression, and consistent treatment duration.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'The compression component matters. Force X\'s dynamic, regulated compression helps reduce analgesic load — which supports faster, less painful recovery.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Cryotherapy with dynamic intermittent compression for analgesia after ACLR. (PMID: 24679367)',
                 'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/24679367/',
+                'col_left_title' => 'Clinical Finding (Murgier & Cassard, 2014)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('Patients using cryotherapy + dynamic intermittent compression (vs cryotherapy + static compression) required ~57.5 mg tramadol (range 0–200) vs. ~128.6 mg (0–250) in static group (P = 0.023).', 'https://pubmed.ncbi.nlm.nih.gov/24679367/', 'The compression component matters. Force X\'s dynamic, regulated compression helps reduce analgesic load—which supports faster, less painful recovery.'),
+                    array('Morphine usage: 0 mg vs. 1.14 mg (P <0.05) in static group.', 'https://pubmed.ncbi.nlm.nih.gov/24679367/', 'Early pain control without heavy narcotics aligns with value-based rehab—an advantage Force X can deliver.'),
+                    array('Mean knee flexion at discharge: 90.5° (range 80–100°) in dynamic compression group vs. 84.5° (75–90°) in static (P = 0.0015).', 'https://pubmed.ncbi.nlm.nih.gov/24679367/', 'Force X supports early range of motion gains by combining cold + compression—matching this clinical finding.'),
+                    array('This was a Level III case-control study after ACL reconstruction.', 'https://pubmed.ncbi.nlm.nih.gov/24679367/', 'While not a high-level RCT, the data still provides credible support for dynamic cryocompression protocols—protocols Force X is designed for.'),
+                ),
+                'why_title' => 'Why Force X Is Backed by Clinical Data',
+                'why_text' => 'A key study by Murgier and Cassard found that adding dynamic intermittent compression to cryotherapy significantly decreases pain medication use and improves knee flexion compared to static compression alone. Force X is built around the same principles—combining precise temperature control, active intermittent compression, and consistent treatment duration—which means patients and clinicians benefit from the same evidence-based protocol. Force X: delivering cold. compression. control. for better recovery.',
             ),
+            // ── SLIDE 3 — Klaber et al., 2019 ──
             array(
                 'title' => 'Compressive Cryotherapy After Hip Arthroscopy',
                 'study_ref' => 'Klaber I, Greeff E, O\'Donnell J. Compressive cryotherapy is superior to cryotherapy alone in reducing pain after hip arthroscopy. J Hip Preserv Surg. 2019;6(4):364-369.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'Patients who received compressive cryotherapy had significantly lower pain scores on post-operative days than those who received standard cryotherapy alone (VAS Day 1: range 0-3; Day 2: 0-5; p = 0.0028). All 20 patients in the compression group were discharged on post-op day 1 versus 17/20 in the standard group.',
-                'why_forcex_title' => 'Why Force X Is Backed by High-Level Clinical Data',
-                'why_forcex' => 'Adding compressive cryotherapy after hip arthroscopy resulted in significantly lower pain scores and a trend toward reduced analgesic use and earlier discharge compared to cryotherapy alone. Force X incorporates that same controlled cooling + dynamic compression approach.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'Dynamic compression + cooling, as delivered by Force X, supports earlier pain relief in the critical early rehab phase. Quicker discharge potential aligns with improved patient flow.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Compressive cryotherapy vs cryotherapy alone after hip arthroscopy. (J Hip Preserv Surg. 2019)',
                 'study_link' => 'https://academic.oup.com/jhps/article/6/4/364/5610188',
+                'col_left_title' => 'Clinical Finding (Klaber et al., 2019)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('Patients who received compressive cryotherapy (CC) had significantly lower pain scores on post-operative days than those who received standard cryotherapy alone (VAS Day 1: range 0–3; Day 2: 0–5; p = 0.0028)', 'https://academic.oup.com/jhps/article/6/4/364/5610188', 'Dynamic compression + cooling, as delivered by Force X, supports earlier pain relief in the critical early rehab phase.'),
+                    array('20/20 patients in CC group discharged on post-op day 1 vs. 17/20 in standard group (trend, p = 0.23)', 'https://academic.oup.com/jhps/article/6/4/364/5610188', 'Quicker discharge potential aligns with improved patient flow and reduced hospital resource use when using Force X technology.'),
+                    array('Trend toward lower analgesic use (1.75 vs 2.8 doses per patient) though not statistically significant', 'https://academic.oup.com/jhps/article/6/4/364/5610188', 'Suggests that compression + cooling may reduce reliance on pain medication—an important clinical benefit that Force X supports.'),
+                ),
+                'why_title' => 'Why Force X Is Backed by High-Level Clinical Data',
+                'why_text' => 'In a study by Klaber et al., adding compressive cryotherapy after hip arthroscopy resulted in significantly lower pain scores and a trend toward reduced analgesic use and earlier discharge compared to cryotherapy alone. Force X incorporates that same controlled cooling + dynamic compression approach—giving clinicians and patients the protocol shown to enhance early recovery. Force X = Cold. Compression. Control. The clinical advantage is real.',
             ),
+            // ── SLIDE 4 — Leegwater et al., 2012 ──
             array(
                 'title' => 'Cryocompression After Hip Arthroplasty',
                 'study_ref' => 'Leegwater NC, Willems JH, Brohet R, Nolte PA. Cryocompression therapy after elective arthroplasty of the hip. Hip Int. 2012;22(5):527-533.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'Elective hip arthroplasty patients receiving intermittent cryo-compression showed a hemoglobin drop of 1.87 mmol/L versus 2.34 mmol/L in the control group (p = 0.027), indicating less immediate blood loss. Trends toward lower morphine use, shorter hospital stay and less wound discharge were also observed.',
-                'why_forcex_title' => 'Why Force X Is Backed by High-Level Clinical Data',
-                'why_forcex' => 'Using intermittent cryocompression after hip arthroplasty resulted in less blood loss, reduced wound discharge, and trends toward less pain medication usage and shorter hospital stay compared to compression alone. Force X incorporates the same key elements.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'This supports using combined cooling + compression rather than compression alone — matching Force X\'s approach. Force X\'s regulated compression may assist in reducing bleeding and hemorrhage risk.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Cryocompression therapy after elective arthroplasty of the hip. (PMID: 23112075)',
                 'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/23112075/',
+                'col_left_title' => 'Clinical Finding (Leegwater et al., 2012)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('Elective hip arthroplasty patients: intervention group received intermittent cryo-compression (n=15) vs control (n=15) with compression band alone.', 'https://pubmed.ncbi.nlm.nih.gov/23112075/', 'This supports using combined cooling + compression rather than compression alone—matching Force X\'s approach.'),
+                    array('Day 1 post-op: Hemoglobin drop was 2.34 mmol/L in control vs 1.87 mmol/L in cryo-compression group (p = 0.027) — indicating less immediate blood loss.', 'https://pubmed.ncbi.nlm.nih.gov/23112075/', 'Suggests that cryo-compression may reduce bleeding/hemorrhage risk. Force X\'s regulated compression may assist this benefit.'),
+                    array('Trends (but not statistically significant) toward lower morphine use, shorter hospital stay, and less wound discharge in the cryo-compression group.', 'https://pubmed.ncbi.nlm.nih.gov/23112075/', 'Force X\'s design (consistent cooling + compression) aligns with outcomes like reduced analgesic use, faster discharge and fewer wound complications.'),
+                    array('No difference found in pain scores at short-term measurement in this study.', 'https://pubmed.ncbi.nlm.nih.gov/23112075/', 'While pain reduction wasn\'t statistically proven here, the hematological and functional trends still point to meaningful recovery benefits from cryo-compression.'),
+                ),
+                'why_title' => 'Why Force X Is Backed by High-Level Clinical Data',
+                'why_text' => 'In the study by Leegwater et al., using intermittent cryocompression after hip arthroplasty resulted in less blood loss, reduced wound discharge, and trends toward less pain medication usage and shorter hospital stay compared to a standard compression band alone. Force X incorporates the same key elements — regulated cooling, intermittent/dynamic compression, and proven protocol alignment — positioning it as the clinically supported solution for postoperative rehabilitation. Force X = Controlled Cold + Compression + Reliable Outcomes.',
             ),
+            // ── SLIDE 5 — Song et al., 2016 (Prospective) ──
             array(
-                'title' => 'Compressive Cryotherapy After Knee Surgery',
-                'study_ref' => 'Song M, et al. Compressive cryotherapy versus cryotherapy alone in patients undergoing knee surgery. SpringerPlus. 2016. (PMID: 27462522)',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'In a meta-analysis of 10 RCTs (522 patients), patients receiving compression + cooling had less pain at post-operative days 2 and 3. The same analysis found a strong tendency toward less swelling with compressive cryotherapy at post-operative days 1 and 2.',
-                'why_forcex_title' => 'Why Force X Aligns With Clinical Evidence',
-                'why_forcex' => 'A large meta-analysis found that adding compression to cryotherapy significantly reduces pain and tends to reduce swelling in the early days after knee surgery. Force X brings together precisely controlled cooling, dynamic intermittent compression, and optimized treatment duration.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'Force X\'s combination of regulated cooling + dynamic compression supports the clinical benefit of this approach in early rehab. The greatest benefit is in the early post-surgical period.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Compressive cryotherapy versus cryotherapy alone — meta-analysis. (PMID: 27462522)',
+                'title' => 'Compressive Cryotherapy vs Cryotherapy Alone',
+                'study_ref' => 'Song M, et al. Compressive cryotherapy versus cryotherapy alone in early rehabilitation after knee surgery: a prospective randomized study. (2016; PMID 27462522)',
                 'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/27462522/',
+                'col_left_title' => 'Clinical Finding (Song et al., 2016)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('Patients receiving compressive cryotherapy (cold + intermittent compression) versus cryotherapy alone showed improved outcomes in the early rehabilitation period after knee surgery.', 'https://pubmed.ncbi.nlm.nih.gov/27462522/', 'Force X\'s design pairs controlled cooling with dynamic compression—mirroring the "cold + compression" approach shown to enhance early post-operative recovery.'),
+                    array('The study highlights that compression adds value beyond cooling alone, especially in early rehab after knee surgery.', 'https://pubmed.ncbi.nlm.nih.gov/27462522/', 'This supports positioning Force X as more than a cold pack—it\'s a cryocompression system engineered for optimized rehabilitation protocols.'),
+                    array('The benefits were observed in the "early rehabilitation stage" (immediate post-operative phase) which is a critical window for mobility, pain control and functional recovery.', 'https://pubmed.ncbi.nlm.nih.gov/27462522/', 'Force X should be emphasized as particularly effective immediately post-surgery, when patients and clinicians seek faster, smoother recovery.'),
+                ),
+                'why_title' => 'Why Force X Is Clinically Supported',
+                'why_text' => 'In the randomized study by Song and colleagues, adding compression to cryotherapy during early knee-surgery rehab resulted in better outcomes than cooling alone. Force X replicates that model—delivering controlled temperature, intermittent/dynamic compression, and protocol-driven duration—so clinicians and patients get the evidence-based advantage. Force X = Cold Control + Dynamic Compression + Fast Recovery.',
             ),
+            // ── SLIDE 6 — Song et al., 2016 (Meta-analysis) ──
+            array(
+                'title' => 'Compressive Cryotherapy — Meta-analysis',
+                'study_ref' => 'Song M, Sun X, Tian X, et al. Compressive cryotherapy versus cryotherapy alone in patients undergoing knee surgery: a meta-analysis. SpringerPlus. 2016.',
+                'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/27462522/',
+                'col_left_title' => 'Finding',
+                'col_right_title' => 'Implication for Force X',
+                'rows' => array(
+                    array('In the meta-analysis of 10 RCTs (522 patients) comparing compressive cryotherapy to cryotherapy alone after knee surgery, patients receiving compression + cooling had less pain at POD2 and POD3.', 'https://pubmed.ncbi.nlm.nih.gov/27462522/', 'Force X\'s combination of regulated cooling + dynamic compression supports the clinical benefit of this approach in early rehab.'),
+                    array('The same analysis found a strong tendency toward less swelling with compressive cryotherapy at POD1 and POD2.', 'https://pubmed.ncbi.nlm.nih.gov/27462522/', 'Force X\'s compression component may help reduce swelling in the acute post-operative window.'),
+                    array('During the intermediate rehabilitation phase, no significant difference was found between compression + cryotherapy vs cryotherapy alone.', 'https://pubmed.ncbi.nlm.nih.gov/27462522/', 'Emphasizes that the greatest benefit is in the early post-surgical period—a time when Force X is uniquely positioned to deliver value.'),
+                ),
+                'why_title' => 'Why Force X Aligns With Clinical Evidence',
+                'why_text' => 'A large meta-analysis (Song M et al., 2016) found that adding compression to cryotherapy significantly reduces pain and tends to reduce swelling in the early days after knee surgery. Force X brings together precisely controlled cooling, dynamic intermittent compression, and optimized treatment duration—mirroring the protocols shown to drive early recovery benefits. Force X = cold. compression. control. early recovery.',
+            ),
+            // ── SLIDE 7 — Yang et al., 2023 ──
             array(
                 'title' => 'Cryopneumatic Device vs Ice Packs',
-                'study_ref' => 'Yang JH, Hwang KT, Lee MK, et al. Comparison of a Cryopneumatic Compression Device and Ice Packs for Cryotherapy Following ACL Reconstruction. Clin Orthop Surg. 2023;15(2):234-240.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'Significantly lower pain (VAS) score on post-op Day 4 for the cryo-pneumatic compression device versus standard ice packs (2.1 ± 1.4 vs 3.3 ± 1.3; p = 0.001). The sum of post-operative drainage + joint effusion was significantly less in the compression-device group (p = 0.015).',
-                'why_forcex_title' => 'Why Force X Is Backed by Cutting-Edge Clinical Data',
-                'why_forcex' => 'Patients who used a cryo-pneumatic compression device after ACL reconstruction had significantly lower pain on Day 4 and less joint fluid/effusion compared to standard ice-pack therapy. Force X incorporates the same key elements — precise cooling, dynamic compression, and protocol-driven duration.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'Regulated compression + cooling — core technology in Force X — can deliver measurable benefit in early post-surgical pain relief. Force X\'s compression may contribute to less joint effusion and faster recovery.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Comparison of a Cryopneumatic Compression Device and Ice Packs. (PMID: 37008961)',
+                'study_ref' => 'Yang JH, Hwang KT, Lee MK, Jo S, Cho E, Lee JK. Comparison of a Cryopneumatic Compression Device and Ice Packs for Cryotherapy Following Anterior Cruciate Ligament Reconstruction. Clin Orthop Surg. 2023;15(2):234-240. (PMID 37008961)',
                 'study_link' => 'https://pubmed.ncbi.nlm.nih.gov/37008961/',
+                'col_left_title' => 'Clinical Finding (Yang et al., 2023)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('Significantly lower pain (VAS) score on post-op Day 4 for the cryo-pneumatic compression device vs standard ice packs (2.1 ± 1.4 vs 3.3 ± 1.3; p = 0.001).', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10060780/', 'Shows that the addition of regulated compression + cooling—core technology in Force X—can deliver measurable benefit in early post-surgical pain relief.'),
+                    array('The sum of post-operative drainage + joint effusion (measured via 3D MRI reconstruction) was significantly less in the compression-device group (p = 0.015).', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10060780/', 'Indicates that Force X\'s compression component may contribute to less joint fluid/effusion—therefore supporting faster recovery and less swelling.'),
+                    array('No statistically significant difference found in cumulative fentanyl (48h) or rescue medication use between groups.', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10060780/', 'While pain and effusion improved, analgesic usage did not differ significantly—suggesting that benefits may be more functional/structural, not solely via reduced medication.'),
+                ),
+                'why_title' => 'Why Force X Is Backed by Cutting-Edge Clinical Data',
+                'why_text' => 'In the randomized trial by Yang et al., patients who used a cryo-pneumatic compression device after ACL reconstruction had significantly lower pain on Day 4 and less joint fluid/effusion compared to standard ice-pack therapy. Force X incorporates the same key elements—precise cooling, dynamic compression, and protocol-driven duration—so that clinicians and patients benefit from the proven approach. Force X = Controlled Cold + Active Compression + Evidence-Based Recovery.',
             ),
+            // ── SLIDE 8 — Sawada et al., 2022 ──
             array(
                 'title' => 'Alternating Heat and Cold Stimulation',
-                'study_ref' => 'Sawada T, Okawara H, Nakashima D, et al. Effects of alternating heat and cold stimulation using a wearable thermo-device. J Physiol Anthropol. 2022;41:1.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'In healthy young men, alternating heat + cold applied via a wearable thermo-device significantly reduced trapezius muscle hardness (d = 0.44; p < 0.05). Subjective reports showed greater improvements in "refreshed feeling," reduced muscle stiffness and fatigue compared to cold alone.',
-                'why_forcex_title' => 'Why Force X Supports Advanced Recovery Protocols',
-                'why_forcex' => 'Applying alternating heat and cold using a wearable device resulted in measurable soft-tissue benefits — including reduced muscle stiffness and improved subjective recovery. Force X builds on this evidence by offering precise thermal regulation, dynamic compression, and protocol-driven treatment cycles.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'Switching between thermal states with controlled devices can measurably soften muscle tissue — a mechanism Force X leverages via cold + compression and optionally heat control.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Effects of alternating heat and cold stimulation using a wearable thermo-device. (J Physiol Anthropol. 2022)',
+                'study_ref' => 'Sawada T, Okawara H, Nakashima D, et al. "Effects of alternating heat and cold stimulation using a wearable thermo-device on subjective and objective shoulder stiffness." J Physiol Anthropol. 2022;41:1.',
                 'study_link' => 'https://jphysiolanthropol.biomedcentral.com/articles/10.1186/s40101-021-00275-9',
+                'col_left_title' => 'Clinical Finding (Sawada et al., 2022)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('In healthy young men, alternating heat + cold (HC) applied via a wearable thermo-device significantly reduced trapezius muscle hardness (from ~1.43 N to ~1.37 N; d = 0.44; p < 0.05).', 'https://jphysiolanthropol.biomedcentral.com/articles/10.1186/s40101-021-00275-9', 'Indicates that switching between thermal states (cold + heat) with controlled devices can measurably soften muscle tissue — a mechanism Force X leverages via cold + compression (and optionally heat) control.'),
+                    array('Subjective reports: HC condition produced greater improvements in "refreshed feeling," reduced muscle stiffness and fatigue compared to no-stimulation and cold alone.', 'https://jphysiolanthropol.biomedcentral.com/articles/10.1186/s40101-021-00275-9', 'Aligns with the recovery narrative: when patients feel less stiffness and fatigue sooner, their mobility and engagement in rehab improve — exactly the goal Force X aims for.'),
+                    array('The reduction in muscle hardness correlated significantly with the magnitude of skin cooling (cold max: r = 0.634, p < 0.01) rather than heating.', 'https://jphysiolanthropol.biomedcentral.com/articles/10.1186/s40101-021-00275-9', 'Demonstrates that controlled cold stimulation (in combination context) plays a key role — supporting the cold-compression emphasis built into Force X.'),
+                    array('Although this was a healthy-participant study (not post-surgical), it supports the concept of thermotherapy + compression/contrast stimuli in soft-tissue recovery.', 'https://jphysiolanthropol.biomedcentral.com/articles/10.1186/s40101-021-00275-9', 'Provides mechanistic support that controlled thermal protocols matter — reinforcing the value of Force X\'s precision temperature and compression regulation.'),
+                ),
+                'why_title' => 'Why Force X Supports Advanced Recovery Protocols',
+                'why_text' => 'In the study by Sawada et al., applying alternating heat and cold using a wearable device resulted in measurable soft-tissue benefits — including reduced muscle stiffness and improved subjective recovery in the shoulder region. Force X builds on this evidence by offering precise thermal regulation (cold and optional heat modes), dynamic compression, and protocol-driven treatment cycles—giving clinicians and patients a system that aligns with state-of-the-art recovery science. Force X = Precision Cold & Compression + Evidence-Informed Recovery.',
             ),
+            // ── SLIDE 9 — Trybulski et al., 2024 ──
             array(
                 'title' => 'Cold, Heat and Contrast Pressure Therapy',
-                'study_ref' => 'Trybulski R, Kużdżał A, Stanula A, et al. Acute effects of cold, heat and contrast pressure therapy on forearm muscles regeneration in combat sports athletes. Sci Rep. 2024;14:22410.',
-                'clinical_finding_title' => 'Clinical Finding',
-                'clinical_finding' => 'Cold-therapy alone produced significantly lower muscle elasticity compared to heat, contrast or control groups (p = 0.002). Contrast (cold + heat + pressure) and heat groups improved biomechanical muscle properties in the hours after treatment in combat sports athletes.',
-                'why_forcex_title' => 'Why Force X Incorporates Advanced Recovery Science',
-                'why_forcex' => 'Applying cold, heat and contrast pressure therapy led to measurable improvements in muscle biomechanical properties — better tissue elasticity and regeneration — compared to basic cold alone. Force X mirrors these advanced protocols through precision temperature control and dynamic compression.',
-                'box_left_title' => 'What it Means for Force X',
-                'box_left' => 'Controlled thermal protocols matter for tissue mechanics — Force X\'s regulated cooling and optionally heat helps maintain and improve tissue elasticity for better recovery.',
-                'box_right_title' => 'Study Referenced',
-                'box_right' => 'Acute effects of cold, heat and contrast pressure therapy on muscle regeneration. (Sci Rep. 2024)',
+                'study_ref' => 'Trybulski R, Kużdżał A, Stanula A, et al. "Acute effects of cold, heat and contrast pressure therapy on forearm muscles regeneration in combat sports athletes: a randomized clinical trial." Sci Rep. 2024;14:22410.',
                 'study_link' => 'https://www.nature.com/articles/s41598-024-72412-0',
+                'col_left_title' => 'Clinical Finding (Trybulski et al., 2024)',
+                'col_right_title' => 'What It Means for Force X',
+                'rows' => array(
+                    array('Cold-therapy alone produced a significantly lower muscle elasticity (i.e., stiffer muscle) compared to heat, contrast or control groups (e.g., ColdT elasticity 0.99 ± 0.07 vs HeatT 1.11 ± 0.07; p = 0.002)', 'https://www.nature.com/articles/s41598-024-72412-0', 'Indicates that controlled thermal protocols matter for tissue mechanics—Force X\'s regulated cooling (and optionally heat) helps maintain/improve tissue elasticity.'),
+                    array('Contrast (cold + heat + pressure) and heat groups improved biomechanical muscle properties in the hours after treatment in combat sports athletes.', 'https://www.nature.com/articles/s41598-024-72412-0', 'Supports the concept of "cold + compression + optional heat" — which aligns with Force X\'s multi-modality capability.'),
+                    array('The study was done in trained athletes (MMA) focusing on muscle regeneration and biomechanical changes rather than just pain or swelling.', 'https://www.nature.com/articles/s41598-024-72412-0', 'Shows that advanced recovery protocols benefit from more than just pain relief—Force X supports underlying tissue recovery which is a differentiator.'),
+                ),
+                'why_title' => 'Why Force X Incorporates Advanced Recovery Science',
+                'why_text' => 'In the randomized trial by Trybulski et al., applying cold, heat and contrast pressure therapy led to measurable improvements in muscle biomechanical properties—better tissue elasticity and regeneration—compared to basic cold alone. Force X mirrors these advanced protocols through precision temperature control, dynamic compression, and optional heat/contrast modes—giving clinicians and patients access to next-level therapeutic recovery devices. Force X = Cold + Compression + Smart Thermal Contrast = Real Recovery Advantage.',
             ),
         );
         $total_evidence_slides = count($clinical_evidence_slides);
@@ -175,33 +212,45 @@ while (have_posts()) : the_post();
                             <div class="clinical-evidence-slide <?php echo $idx === 0 ? 'active' : ''; ?>" data-slide-index="<?php echo $idx; ?>">
                                 <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-10">
                                     <!-- Slide Title -->
-                                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"><?php echo esc_html($slide['title']); ?></h3>
+                                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6"><?php echo esc_html($slide['title']); ?></h3>
 
-                                    <!-- Two Column Layout -->
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-8">
-                                        <!-- Left Column: Clinical Finding -->
-                                        <div>
-                                            <h4 class="text-lg font-semibold text-gray-900 mb-3"><?php echo esc_html($slide['clinical_finding_title']); ?></h4>
-                                            <p class="text-gray-600 leading-relaxed text-base"><?php echo esc_html($slide['clinical_finding']); ?></p>
-                                        </div>
-                                        <!-- Right Column: Why ForceX -->
-                                        <div>
-                                            <h4 class="text-lg font-semibold text-gray-900 mb-3"><?php echo esc_html($slide['why_forcex_title']); ?></h4>
-                                            <p class="text-gray-600 leading-relaxed text-base"><?php echo esc_html($slide['why_forcex']); ?></p>
-                                        </div>
+                                    <!-- Two Column Table Header -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-2">
+                                        <h4 class="text-base font-semibold text-gray-900"><?php echo esc_html($slide['col_left_title']); ?></h4>
+                                        <h4 class="text-base font-semibold text-gray-900 hidden md:block"><?php echo esc_html($slide['col_right_title']); ?></h4>
                                     </div>
 
-                                    <!-- Bottom Boxes -->
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
-                                        <!-- Box Left -->
-                                        <div class="rounded-xl p-5 md:p-5" style="background-color: #f0f5fa;">
-                                            <h5 class="text-base font-semibold text-gray-900 mb-2"><?php echo esc_html($slide['box_left_title']); ?></h5>
-                                            <p class="text-gray-600 text-sm leading-relaxed"><?php echo esc_html($slide['box_left']); ?></p>
+                                    <!-- Table Rows -->
+                                    <?php foreach ($slide['rows'] as $row): 
+                                        $finding = $row[0];
+                                        $finding_link = $row[1];
+                                        $meaning = $row[2];
+                                    ?>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-3 border-t border-gray-100">
+                                        <div class="text-gray-700 text-sm leading-relaxed">
+                                            <?php echo esc_html($finding); ?>
+                                            <?php if (!empty($finding_link)): ?>
+                                                <a href="<?php echo esc_url($finding_link); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center ml-1 text-xs font-medium hover:underline" style="color: #25AAE1;">PubMed ↗</a>
+                                            <?php endif; ?>
                                         </div>
-                                        <!-- Box Right: Study Referenced with link -->
+                                        <div>
+                                            <h4 class="text-base font-semibold text-gray-900 mb-1 md:hidden"><?php echo esc_html($slide['col_right_title']); ?></h4>
+                                            <p class="text-gray-600 text-sm leading-relaxed"><?php echo esc_html($meaning); ?></p>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
+
+                                    <!-- Bottom Boxes -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-6 mb-8">
+                                        <!-- Box: Why Force X -->
                                         <div class="rounded-xl p-5 md:p-5" style="background-color: #f0f5fa;">
-                                            <h5 class="text-base font-semibold text-gray-900 mb-2"><?php echo esc_html($slide['box_right_title']); ?></h5>
-                                            <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo esc_html($slide['box_right']); ?></p>
+                                            <h5 class="text-base font-semibold text-gray-900 mb-2"><?php echo esc_html($slide['why_title']); ?></h5>
+                                            <p class="text-gray-600 text-sm leading-relaxed"><?php echo esc_html($slide['why_text']); ?></p>
+                                        </div>
+                                        <!-- Box: Study Referenced with prominent link -->
+                                        <div class="rounded-xl p-5 md:p-5" style="background-color: #f0f5fa;">
+                                            <h5 class="text-base font-semibold text-gray-900 mb-2">Study Referenced</h5>
+                                            <p class="text-gray-600 text-sm leading-relaxed mb-3"><?php echo esc_html($slide['study_ref']); ?></p>
                                             <?php if (!empty($slide['study_link'])): ?>
                                                 <a href="<?php echo esc_url($slide['study_link']); ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-medium hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #25AAE1 0%, #004F8C 100%);">
                                                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
@@ -1179,126 +1228,48 @@ document.addEventListener('DOMContentLoaded', function() {
         const evidenceSlides = clinicalEvidenceTrack.querySelectorAll('.clinical-evidence-slide');
         const totalEvidenceSlides = evidenceSlides.length;
         let evidenceAutoplayTimer = null;
-        const EVIDENCE_AUTOPLAY_INTERVAL = 7000; // 7 seconds per slide
+        const EVIDENCE_AUTOPLAY_INTERVAL = 7000;
         
         if (totalEvidenceSlides > 1) {
             function updateClinicalEvidenceSlider() {
                 evidenceSlides.forEach((slide, index) => {
                     slide.classList.remove('active');
-                    if (index === currentEvidenceSlide) {
-                        slide.classList.add('active');
-                    }
+                    if (index === currentEvidenceSlide) slide.classList.add('active');
                 });
-                
-                // Update counter in active slide
                 const activeSlide = evidenceSlides[currentEvidenceSlide];
                 if (activeSlide) {
                     const counter = activeSlide.querySelector('.clinical-evidence-counter');
-                    if (counter) {
-                        counter.innerHTML = '<span class="text-2xl md:text-3xl font-bold">' + (currentEvidenceSlide + 1) + '</span> / <span class="text-lg md:text-xl text-gray-500">' + totalEvidenceSlides + '</span>';
-                    }
-                }
-                
-                // Adjust container height
-                if (activeSlide) {
+                    if (counter) counter.innerHTML = '<span class="text-2xl md:text-3xl font-bold">' + (currentEvidenceSlide + 1) + '</span> / <span class="text-lg md:text-xl text-gray-500">' + totalEvidenceSlides + '</span>';
                     const container = document.querySelector('.clinical-evidence-slider-container');
-                    if (container) {
-                        setTimeout(() => {
-                            container.style.minHeight = activeSlide.offsetHeight + 'px';
-                        }, 100);
-                    }
+                    if (container) setTimeout(() => { container.style.minHeight = activeSlide.offsetHeight + 'px'; }, 100);
                 }
             }
-            
             function handleEvidenceNav(direction) {
-                if (direction === 'next') {
-                    currentEvidenceSlide = (currentEvidenceSlide + 1) % totalEvidenceSlides;
-                } else {
-                    currentEvidenceSlide = currentEvidenceSlide === 0 ? totalEvidenceSlides - 1 : currentEvidenceSlide - 1;
-                }
+                if (direction === 'next') currentEvidenceSlide = (currentEvidenceSlide + 1) % totalEvidenceSlides;
+                else currentEvidenceSlide = currentEvidenceSlide === 0 ? totalEvidenceSlides - 1 : currentEvidenceSlide - 1;
                 updateClinicalEvidenceSlider();
             }
-            
-            function startEvidenceAutoplay() {
-                stopEvidenceAutoplay();
-                evidenceAutoplayTimer = setInterval(function() {
-                    handleEvidenceNav('next');
-                }, EVIDENCE_AUTOPLAY_INTERVAL);
-            }
-            
-            function stopEvidenceAutoplay() {
-                if (evidenceAutoplayTimer) {
-                    clearInterval(evidenceAutoplayTimer);
-                    evidenceAutoplayTimer = null;
-                }
-            }
-            
-            function resetEvidenceAutoplay() {
-                stopEvidenceAutoplay();
-                startEvidenceAutoplay();
-            }
+            function startEvidenceAutoplay() { stopEvidenceAutoplay(); evidenceAutoplayTimer = setInterval(function() { handleEvidenceNav('next'); }, EVIDENCE_AUTOPLAY_INTERVAL); }
+            function stopEvidenceAutoplay() { if (evidenceAutoplayTimer) { clearInterval(evidenceAutoplayTimer); evidenceAutoplayTimer = null; } }
+            function resetEvidenceAutoplay() { stopEvidenceAutoplay(); startEvidenceAutoplay(); }
             
             clinicalEvidenceTrack.addEventListener('click', function(e) {
-                // Don't reset autoplay if clicking a study link
                 if (e.target.closest('a[href]')) return;
-                
-                if (e.target.closest('.clinical-evidence-prev')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleEvidenceNav('prev');
-                    resetEvidenceAutoplay();
-                } else if (e.target.closest('.clinical-evidence-next')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleEvidenceNav('next');
-                    resetEvidenceAutoplay();
-                }
+                if (e.target.closest('.clinical-evidence-prev')) { e.preventDefault(); e.stopPropagation(); handleEvidenceNav('prev'); resetEvidenceAutoplay(); }
+                else if (e.target.closest('.clinical-evidence-next')) { e.preventDefault(); e.stopPropagation(); handleEvidenceNav('next'); resetEvidenceAutoplay(); }
             });
-            
-            // Touch/swipe support
             const evidenceContainer = document.querySelector('.clinical-evidence-slider-container');
             if (evidenceContainer) {
                 let eTouchStartX = 0, eTouchEndX = 0;
-                evidenceContainer.addEventListener('touchstart', function(e) {
-                    eTouchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-                evidenceContainer.addEventListener('touchend', function(e) {
-                    eTouchEndX = e.changedTouches[0].screenX;
-                    const diff = eTouchStartX - eTouchEndX;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) handleEvidenceNav('next');
-                        else handleEvidenceNav('prev');
-                        resetEvidenceAutoplay();
-                    }
-                }, { passive: true });
-                
-                // Pause on hover, resume on leave
-                evidenceContainer.addEventListener('mouseenter', function() {
-                    stopEvidenceAutoplay();
-                });
-                evidenceContainer.addEventListener('mouseleave', function() {
-                    startEvidenceAutoplay();
-                });
+                evidenceContainer.addEventListener('touchstart', function(e) { eTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
+                evidenceContainer.addEventListener('touchend', function(e) { eTouchEndX = e.changedTouches[0].screenX; const diff = eTouchStartX - eTouchEndX; if (Math.abs(diff) > 50) { if (diff > 0) handleEvidenceNav('next'); else handleEvidenceNav('prev'); resetEvidenceAutoplay(); } }, { passive: true });
+                evidenceContainer.addEventListener('mouseenter', function() { stopEvidenceAutoplay(); });
+                evidenceContainer.addEventListener('mouseleave', function() { startEvidenceAutoplay(); });
             }
-            
-            // Pause when tab not visible
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    stopEvidenceAutoplay();
-                } else {
-                    startEvidenceAutoplay();
-                }
-            });
-            
+            document.addEventListener('visibilitychange', function() { if (document.hidden) stopEvidenceAutoplay(); else startEvidenceAutoplay(); });
             updateClinicalEvidenceSlider();
             startEvidenceAutoplay();
-            
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(function() {
-                    updateClinicalEvidenceSlider();
-                }, 250);
-            });
+            window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(function() { updateClinicalEvidenceSlider(); }, 250); });
         }
     }
     
