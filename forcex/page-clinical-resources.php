@@ -1157,13 +1157,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Clinical Evidence Slider - Fade Effect
+    // Clinical Evidence Slider - Fade Effect with Autoplay
     const clinicalEvidenceTrack = document.getElementById('clinical-evidence-slider-track');
     
     if (clinicalEvidenceTrack) {
         let currentEvidenceSlide = 0;
         const evidenceSlides = clinicalEvidenceTrack.querySelectorAll('.clinical-evidence-slide');
         const totalEvidenceSlides = evidenceSlides.length;
+        let evidenceAutoplayTimer = null;
+        const EVIDENCE_AUTOPLAY_INTERVAL = 7000; // 7 seconds per slide
         
         if (totalEvidenceSlides > 1) {
             function updateClinicalEvidenceSlider() {
@@ -1196,11 +1198,34 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function handleEvidenceNav(direction) {
                 if (direction === 'next') {
+                    // Loop back to first slide after last
                     currentEvidenceSlide = (currentEvidenceSlide + 1) % totalEvidenceSlides;
                 } else {
+                    // Loop to last slide from first
                     currentEvidenceSlide = currentEvidenceSlide === 0 ? totalEvidenceSlides - 1 : currentEvidenceSlide - 1;
                 }
                 updateClinicalEvidenceSlider();
+            }
+            
+            // Autoplay: advances to next slide, loops infinitely
+            function startEvidenceAutoplay() {
+                stopEvidenceAutoplay();
+                evidenceAutoplayTimer = setInterval(function() {
+                    handleEvidenceNav('next');
+                }, EVIDENCE_AUTOPLAY_INTERVAL);
+            }
+            
+            function stopEvidenceAutoplay() {
+                if (evidenceAutoplayTimer) {
+                    clearInterval(evidenceAutoplayTimer);
+                    evidenceAutoplayTimer = null;
+                }
+            }
+            
+            // Reset autoplay timer on manual interaction (so it doesn't jump right after click)
+            function resetEvidenceAutoplay() {
+                stopEvidenceAutoplay();
+                startEvidenceAutoplay();
             }
             
             clinicalEvidenceTrack.addEventListener('click', function(e) {
@@ -1208,10 +1233,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     e.stopPropagation();
                     handleEvidenceNav('prev');
+                    resetEvidenceAutoplay();
                 } else if (e.target.closest('.clinical-evidence-next')) {
                     e.preventDefault();
                     e.stopPropagation();
                     handleEvidenceNav('next');
+                    resetEvidenceAutoplay();
                 }
             });
             
@@ -1228,11 +1255,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (Math.abs(diff) > 50) {
                         if (diff > 0) handleEvidenceNav('next');
                         else handleEvidenceNav('prev');
+                        resetEvidenceAutoplay();
                     }
                 }, { passive: true });
+                
+                // Pause autoplay on hover, resume on mouse leave
+                evidenceContainer.addEventListener('mouseenter', function() {
+                    stopEvidenceAutoplay();
+                });
+                evidenceContainer.addEventListener('mouseleave', function() {
+                    startEvidenceAutoplay();
+                });
             }
             
+            // Pause autoplay when tab is not visible (saves resources)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    stopEvidenceAutoplay();
+                } else {
+                    startEvidenceAutoplay();
+                }
+            });
+            
             updateClinicalEvidenceSlider();
+            startEvidenceAutoplay();
             
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimer);
