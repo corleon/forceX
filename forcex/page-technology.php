@@ -664,6 +664,7 @@ while (have_posts()) : the_post();
 .key-benefits-slider-container {
     position: relative;
     width: 100%;
+    touch-action: pan-y;
 }
 
 .key-benefits-slider-track {
@@ -756,6 +757,28 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSlider();
         }
     });
+    
+    // Touch/swipe support for mobile (desktop unchanged)
+    const keyBenefitsContainer = document.querySelector('.key-benefits-slider-container');
+    if (keyBenefitsContainer) {
+        let touchStartX = 0, touchEndX = 0;
+        keyBenefitsContainer.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        keyBenefitsContainer.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                } else if (diff < 0 && currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                }
+            }
+        }, { passive: true });
+    }
     
     // Initialize
     updateSlider();

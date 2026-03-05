@@ -4079,6 +4079,16 @@ function forcex_clinical_research_meta_box_callback($post) {
                             </td>
                         </tr>
                         <tr>
+                            <th><label>Open as link</label></th>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="forcex_clinical_research_items[<?php echo $index; ?>][open_external_link]" value="1" <?php echo (!isset($item['open_external_link']) || !empty($item['open_external_link'])) ? 'checked="checked"' : ''; ?> />
+                                    Open in new window (uncheck to force download)
+                                </label>
+                                <p class="description">When checked, the URL opens in a new tab. When unchecked, the file is offered as download. Default: open in new window.</p>
+                            </td>
+                        </tr>
+                        <tr>
                             <th><label>Order</label></th>
                             <td>
                                 <input type="number" name="forcex_clinical_research_items[<?php echo $index; ?>][order]" value="<?php echo esc_attr($item['order']); ?>" min="0" style="width: 100px;" />
@@ -4112,6 +4122,8 @@ function forcex_clinical_research_meta_box_callback($post) {
             html += '<td><input type="text" name="forcex_clinical_research_items[' + clinicalResearchItemIndex + '][title]" value="" style="width: 100%;" placeholder="e.g., Assessing the impact of ForceX™ on post-surgical recovery" required /></td></tr>';
             html += '<tr><th><label>Download URL</label></th>';
             html += '<td><input type="url" name="forcex_clinical_research_items[' + clinicalResearchItemIndex + '][download_url]" value="" style="width: 100%;" placeholder="https://example.com/research.pdf" /></td></tr>';
+            html += '<tr><th><label>Open as link</label></th>';
+            html += '<td><label><input type="checkbox" name="forcex_clinical_research_items[' + clinicalResearchItemIndex + '][open_external_link]" value="1" checked /> Open in new window (uncheck to force download)</label></td></tr>';
             html += '<tr><th><label>Order</label></th>';
             html += '<td><input type="number" name="forcex_clinical_research_items[' + clinicalResearchItemIndex + '][order]" value="' + clinicalResearchItemIndex + '" min="0" style="width: 100px;" /></td></tr>';
             html += '<tr><th></th><td><button type="button" class="button remove-clinical-research-item" style="color: #dc3232;">Remove Item</button></td></tr>';
@@ -4161,6 +4173,7 @@ function forcex_save_clinical_research_meta($post_id) {
                 $research_items[] = array(
                     'title' => sanitize_text_field($item['title']),
                     'download_url' => !empty($item['download_url']) ? esc_url_raw($item['download_url']) : '',
+                    'open_external_link' => !empty($item['open_external_link']),
                     'order' => !empty($item['order']) ? intval($item['order']) : $index
                 );
             }

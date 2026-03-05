@@ -443,7 +443,7 @@ while (have_posts()) : the_post();
                 ?>
                     <!-- Reviews Slider -->
                     <div class="relative">
-                        <div class="overflow-hidden">
+                        <div class="overflow-hidden rent-reviews-slider-container" style="touch-action: pan-y;">
                             <div class="rent-reviews-slider-track" id="rent-reviews-slider-track">
                                 <?php foreach ($review_pairs as $pair) : ?>
                                     <div class="rent-reviews-slide w-full flex-shrink-0 px-2">
@@ -1141,6 +1141,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
                 updateRentReviewsSlider();
             });
+            
+            // Touch/swipe support for mobile (desktop unchanged)
+            const rentReviewsContainer = document.querySelector('.rent-reviews-slider-container');
+            if (rentReviewsContainer) {
+                let touchStartX = 0, touchEndX = 0;
+                rentReviewsContainer.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                rentReviewsContainer.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            currentSlide = (currentSlide + 1) % totalSlides;
+                        } else {
+                            currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+                        }
+                        updateRentReviewsSlider();
+                    }
+                }, { passive: true });
+            }
             
             // Initialize slider
             updateRentReviewsSlider();

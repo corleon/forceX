@@ -39,8 +39,8 @@
                 <!-- Navigation Links -->
                 <div class="footer-navigation">
                     <!-- Products -->
-                    <div class="footer-nav-column" data-expanded="true">
-                        <button class="footer-nav-header footer-nav-toggle" type="button">
+                    <div class="footer-nav-column" data-expanded="true" aria-expanded="true">
+                        <button class="footer-nav-header footer-nav-toggle" type="button" aria-expanded="true">
                             <span>Products</span>
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrowbottom.svg" alt="Toggle" class="footer-nav-arrow" width="16" height="16">
                         </button>
@@ -82,8 +82,8 @@
                     </div>
 
                     <!-- Company -->
-                    <div class="footer-nav-column" data-expanded="false">
-                        <button class="footer-nav-header footer-nav-toggle" type="button">
+                    <div class="footer-nav-column" data-expanded="false" aria-expanded="false">
+                        <button class="footer-nav-header footer-nav-toggle" type="button" aria-expanded="false">
                             <span>Company</span>
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrowbottom.svg" alt="Toggle" class="footer-nav-arrow" width="16" height="16">
                         </button>
@@ -123,8 +123,8 @@
                     </div>
 
                     <!-- Purchase -->
-                    <div class="footer-nav-column" data-expanded="false">
-                        <button class="footer-nav-header footer-nav-toggle" type="button">
+                    <div class="footer-nav-column" data-expanded="false" aria-expanded="false">
+                        <button class="footer-nav-header footer-nav-toggle" type="button" aria-expanded="false">
                             <span>Purchase</span>
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/arrowbottom.svg" alt="Toggle" class="footer-nav-arrow" width="16" height="16">
                         </button>
@@ -187,6 +187,89 @@
         </div>
     </div>
 </footer>
+
+<!-- Cookie Consent Banner (US best practices: CCPA/state laws, first-visit notice) -->
+<?php
+$privacy_url = home_url('/privacy-policy');
+$cookie_settings_url = home_url('/cookie-settings');
+?>
+<div id="cookie-consent-banner" class="cookie-consent-banner" role="dialog" aria-labelledby="cookie-consent-heading" aria-describedby="cookie-consent-desc" hidden>
+    <div class="cookie-consent-inner">
+        <div class="cookie-consent-content">
+            <h2 id="cookie-consent-heading" class="cookie-consent-heading">We value your privacy</h2>
+            <p id="cookie-consent-desc" class="cookie-consent-desc">
+                We use cookies and similar technologies to run this site, improve your experience, and personalize content. You can choose which categories you allow. Necessary cookies are required for the site to function and cannot be disabled. For more information, see our <a href="<?php echo esc_url($privacy_url); ?>" class="cookie-consent-link">Privacy Policy</a>.
+            </p>
+        </div>
+        <div class="cookie-consent-actions">
+            <button type="button" id="cookie-consent-reject" class="cookie-consent-btn cookie-consent-btn-secondary">Reject non-essential</button>
+            <button type="button" id="cookie-consent-manage" class="cookie-consent-btn cookie-consent-btn-secondary">Manage preferences</button>
+            <button type="button" id="cookie-consent-accept" class="cookie-consent-btn cookie-consent-btn-primary">Accept all</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cookie preferences modal -->
+<div id="cookie-consent-modal" class="cookie-consent-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-heading" aria-describedby="cookie-modal-desc" hidden>
+    <div class="cookie-consent-modal-backdrop" id="cookie-consent-modal-backdrop"></div>
+    <div class="cookie-consent-modal-content">
+        <div class="cookie-consent-modal-header">
+            <h2 id="cookie-modal-heading" class="cookie-consent-modal-title">Cookie preferences</h2>
+            <button type="button" id="cookie-consent-modal-close" class="cookie-consent-modal-close" aria-label="Close cookie preferences">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <p id="cookie-modal-desc" class="cookie-consent-modal-intro">
+            You can enable or disable different types of cookies below. Necessary cookies are required for the website to function and cannot be turned off.
+        </p>
+        <div class="cookie-consent-toggles">
+            <div class="cookie-consent-toggle-item cookie-consent-toggle-necessary">
+                <div class="cookie-consent-toggle-info">
+                    <span class="cookie-consent-toggle-label">Necessary</span>
+                    <span class="cookie-consent-toggle-desc">Required for the site to work (e.g., security, cart, login).</span>
+                </div>
+                <span class="cookie-consent-toggle-badge">Always on</span>
+            </div>
+            <div class="cookie-consent-toggle-item">
+                <div class="cookie-consent-toggle-info">
+                    <label for="cookie-toggle-analytics" class="cookie-consent-toggle-label">Analytics</label>
+                    <span class="cookie-consent-toggle-desc">Help us understand how visitors use the site so we can improve it.</span>
+                </div>
+                <label class="cookie-consent-switch">
+                    <input type="checkbox" id="cookie-toggle-analytics" class="cookie-consent-switch-input" checked>
+                    <span class="cookie-consent-switch-slider"></span>
+                </label>
+            </div>
+            <div class="cookie-consent-toggle-item">
+                <div class="cookie-consent-toggle-info">
+                    <label for="cookie-toggle-marketing" class="cookie-consent-toggle-label">Marketing</label>
+                    <span class="cookie-consent-toggle-desc">Used to deliver relevant ads and measure ad performance.</span>
+                </div>
+                <label class="cookie-consent-switch">
+                    <input type="checkbox" id="cookie-toggle-marketing" class="cookie-consent-switch-input">
+                    <span class="cookie-consent-switch-slider"></span>
+                </label>
+            </div>
+            <div class="cookie-consent-toggle-item">
+                <div class="cookie-consent-toggle-info">
+                    <label for="cookie-toggle-functional" class="cookie-consent-toggle-label">Functional</label>
+                    <span class="cookie-consent-toggle-desc">Remember your choices (e.g., language, region) and enhanced features.</span>
+                </div>
+                <label class="cookie-consent-switch">
+                    <input type="checkbox" id="cookie-toggle-functional" class="cookie-consent-switch-input" checked>
+                    <span class="cookie-consent-switch-slider"></span>
+                </label>
+            </div>
+        </div>
+        <p class="cookie-consent-modal-legal">
+            For details and your rights (including “Do Not Sell or Share My Personal Information”), see our <a href="<?php echo esc_url($privacy_url); ?>" class="cookie-consent-link">Privacy Policy</a>.
+        </p>
+        <div class="cookie-consent-modal-actions">
+            <button type="button" id="cookie-consent-save" class="cookie-consent-btn cookie-consent-btn-primary">Save preferences</button>
+            <button type="button" id="cookie-consent-accept-all-modal" class="cookie-consent-btn cookie-consent-btn-secondary">Accept all</button>
+        </div>
+    </div>
+</div>
 
 <!-- Toast Notification Container -->
 <div id="toast-container" class="toast-container"></div>

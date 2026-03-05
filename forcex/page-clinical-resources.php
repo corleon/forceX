@@ -345,17 +345,27 @@ while (have_posts()) : the_post();
                                 </h3>
                             </div>
                             
-                            <!-- Download Button -->
-                            <?php if (!empty($item['download_url'])): ?>
+                            <!-- Action Button: Open in new window or Download -->
+                            <?php
+                            $open_as_link = !isset($item['open_external_link']) || !empty($item['open_external_link']);
+                            if (!empty($item['download_url'])):
+                                if ($open_as_link): ?>
                                 <div class="flex-shrink-0 w-full md:w-auto">
                                     <a href="<?php echo esc_url($item['download_url']); ?>" target="_blank" rel="noopener noreferrer" class="inline-block w-full md:w-auto text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-white text-sm md:text-base font-medium hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #25AAE1 0%, #004F8C 100%);">
+                                        VIEW
+                                    </a>
+                                </div>
+                                <?php else: ?>
+                                <div class="flex-shrink-0 w-full md:w-auto">
+                                    <a href="<?php echo esc_url($item['download_url']); ?>" download class="inline-block w-full md:w-auto text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-white text-sm md:text-base font-medium hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #25AAE1 0%, #004F8C 100%);">
                                         DOWNLOAD
                                     </a>
                                 </div>
-                            <?php else: ?>
+                                <?php endif;
+                            else: ?>
                                 <div class="flex-shrink-0 w-full md:w-auto">
                                     <span class="inline-block w-full md:w-auto text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-gray-400 text-sm md:text-base font-medium cursor-not-allowed" style="background-color: #f0f3f7;">
-                                        DOWNLOAD
+                                        <?php echo $open_as_link ? 'VIEW' : 'DOWNLOAD'; ?>
                                     </span>
                                 </div>
                             <?php endif; ?>
@@ -365,7 +375,7 @@ while (have_posts()) : the_post();
                     <!-- Hidden items for "Load More" -->
                     <div id="clinical-research-more-items" style="display: none;">
                         <?php foreach (array_slice($research_items, 3) as $item): ?>
-                            <div class="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 hover:shadow-lg transition-shadow">
+                            <div class="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 hover:shadow-lg transition-shadow mt-4">
                                 <!-- Document Icon -->
                                 <div class="flex-shrink-0">
                                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg flex items-center justify-center" style="background-color: #E3F2FD;">
@@ -380,17 +390,27 @@ while (have_posts()) : the_post();
                                     </h3>
                                 </div>
                                 
-                                <!-- Download Button -->
-                                <?php if (!empty($item['download_url'])): ?>
+                                <!-- Action Button: Open in new window or Download -->
+                                <?php
+                                $open_as_link_more = !isset($item['open_external_link']) || !empty($item['open_external_link']);
+                                if (!empty($item['download_url'])):
+                                    if ($open_as_link_more): ?>
                                     <div class="flex-shrink-0 w-full md:w-auto">
                                         <a href="<?php echo esc_url($item['download_url']); ?>" target="_blank" rel="noopener noreferrer" class="inline-block w-full md:w-auto text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-white text-sm md:text-base font-medium hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #25AAE1 0%, #004F8C 100%);">
+                                            VIEW
+                                        </a>
+                                    </div>
+                                    <?php else: ?>
+                                    <div class="flex-shrink-0 w-full md:w-auto">
+                                        <a href="<?php echo esc_url($item['download_url']); ?>" download class="inline-block w-full md:w-auto text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-white text-sm md:text-base font-medium hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #25AAE1 0%, #004F8C 100%);">
                                             DOWNLOAD
                                         </a>
                                     </div>
-                                <?php else: ?>
+                                    <?php endif;
+                                else: ?>
                                     <div class="flex-shrink-0 w-full md:w-auto">
                                         <span class="inline-block w-full md:w-auto text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-gray-400 text-sm md:text-base font-medium cursor-not-allowed" style="background-color: #f0f3f7;">
-                                            DOWNLOAD
+                                            <?php echo $open_as_link_more ? 'VIEW' : 'DOWNLOAD'; ?>
                                         </span>
                                     </div>
                                 <?php endif; ?>
@@ -614,6 +634,7 @@ while (have_posts()) : the_post();
 .medical-experts-slider-container {
     position: relative;
     min-height: 400px;
+    touch-action: pan-y;
 }
 
 .medical-experts-slider-track {
@@ -888,6 +909,23 @@ document.addEventListener('DOMContentLoaded', function() {
             const nextButtons = medicalExpertsSliderTrack.querySelectorAll('.medical-experts-slider-next');
             prevButtons.forEach(btn => btn.type = 'button');
             nextButtons.forEach(btn => btn.type = 'button');
+            
+            // Touch/swipe support for mobile (desktop unchanged)
+            const medicalExpertsContainer = document.querySelector('.medical-experts-slider-container');
+            if (medicalExpertsContainer) {
+                let touchStartX = 0, touchEndX = 0;
+                medicalExpertsContainer.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                medicalExpertsContainer.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) handleNavigation('next');
+                        else handleNavigation('prev');
+                    }
+                }, { passive: true });
+            }
             
             // Initialize slider
             updateMedicalExpertsSlider();

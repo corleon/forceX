@@ -4,6 +4,22 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
+    <?php
+    // Favicons: use WordPress Site Icon when set (Appearance → Customize → Site Identity).
+    // Otherwise use theme fallbacks from assets/img/favicon/ (see FAVICONS.md).
+    $site_icon_id = (int) get_option('site_icon', 0);
+    if (!$site_icon_id) {
+        $favicon_base = get_template_directory_uri() . '/assets/img/favicon';
+        ?>
+    <!-- Favicons: SVG first (modern), then ICO/PNG fallbacks, Apple touch, PWA manifest -->
+    <link rel="icon" type="image/svg+xml" href="<?php echo esc_url($favicon_base); ?>/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="<?php echo esc_url($favicon_base); ?>/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php echo esc_url($favicon_base); ?>/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" href="<?php echo esc_url($favicon_base); ?>/apple-touch-icon.png" sizes="180x180">
+    <link rel="manifest" href="<?php echo esc_url($favicon_base); ?>/site.webmanifest">
+        <?php
+    }
+    ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">

@@ -537,19 +537,33 @@ while (have_posts()) : the_post();
                     <h2 class="title-h2">
                         Our vision
                     </h2>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Driving innovation and advancing recovery solutions to empower clinicians, improve patient outcomes, and expand access worldwide.
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        As our team at Multi Radiance Medical (MRM) expanded its work in skeletal muscle performance and recovery, we began systematically evaluating the modalities clinicians routinely rely on after intense training—particularly cold therapy and laser. Through a series of randomized, controlled clinical trials, we examined how these interventions influenced strength recovery, delayed onset muscle soreness (DOMS), and biochemical markers of muscle damage. One of the landmark trials directly compared photobiomodulation therapy (PBMT) and cryotherapy following high-intensity eccentric exercise (Paiva et al., 2016*).
                     </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        The outcomes were instructive. PBMT as a standalone intervention significantly improved maximum voluntary contraction (MVC), reduced DOMS, and prevented the expected elevation in creatine kinase (CK) from 24 to 96 hours post-exercise. Cryotherapy alone demonstrated results similar to placebo and did not meaningfully accelerate recovery (Paiva et al., 2016). These findings challenged the long-held assumption that temperature reduction alone drives restitution and pushed us to examine the broader physiological mechanisms governing recovery and performance adaptation.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        What became increasingly clear is that recovery and performance preparation are governed by mechanical and thermal physiology—not simply surface cooling. Compression plays a central role in supporting venous and lymphatic return, managing edema, and influencing pain modulation. At the same time, controlled heat has well-established effects on tissue extensibility, circulation, and joint range of motion, making it valuable not only in post-exercise recovery but also as a pre-activity ergogenic aid. When applied strategically, thermal modulation combined with compression can enhance tissue readiness, support joint mobility, and optimize physiological conditions for performance.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        This understanding led directly to the development of Force X technology. Rather than centering the system around cryotherapy, Force X was engineered around controlled compression integrated with responsive thermodynamic modulation—both heat and cooling. This design allows the platform to address post-exercise recovery through compression-driven fluid management while also expanding into pre-treatment applications that enhance performance capacity and support ergonomic readiness. The evolution from studying cold versus laser to building a thermodynamically intelligent compression system reflects a consistent principle at MRM: indications should expand when supported by measurable physiology and published clinical evidence.
+                    </p>
+                    <div class="mt-6 pt-4 border-t border-gray-300">
+                        <p class="text-sm text-gray-500 leading-relaxed">
+                            *Paiva PRV, Tomazoni SS, Johnson DS, et al. Photobiomodulation therapy (PBMT) and/or cryotherapy in skeletal muscle restitution: what is better? A randomized, double-blinded, placebo-controlled clinical trial. Lasers in Medical Science. 2016.
+                        </p>
+                    </div>
                 </div>
                 
                 <!-- Right Column - 3 Vision Cards -->
-                <div class="tech-widget-container">
+                <div class="tech-widget-container sticky top-20">
                     <!-- Desktop: Regular stacked layout -->
                     <div class="tech-widget-desktop space-y-6">
                         <!-- Card 1: Advance clinical research -->
                         <div class="rounded-xl p-6 shadow-sm" style="background:#fff;">
                             <div class="flex items-start gap-4">
-                                <div class="flex-shrink-0">
+                                <div class="flex-shrink-20">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/pp1.png" alt="Advance clinical research" class="object-contain" style="width: 240px; height: 240px;">
                                 </div>
                                 <div>
@@ -909,6 +923,7 @@ while (have_posts()) : the_post();
     position: relative;
     width: 100%;
     overflow: hidden;
+    touch-action: pan-y;
 }
 
 .key-products-slider-track {

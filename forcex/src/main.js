@@ -129,7 +129,143 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize cart badge visibility
     initializeCartBadge()
-    
+
+    // Cookie consent (US best practices: first-visit notice, granular controls, CCPA-style)
+    ;(function () {
+        const STORAGE_KEY = 'forcex_cookie_consent'
+        const CONSENT_VERSION = 1
+        const defaultConsent = {
+            necessary: true,
+            analytics: true,
+            marketing: false,
+            functional: true,
+            version: CONSENT_VERSION,
+            timestamp: null
+        }
+        function getStoredConsent() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY)
+                if (!raw) return null
+                const data = JSON.parse(raw)
+                if (data && typeof data.necessary !== 'undefined' && data.version === CONSENT_VERSION) return data
+                return null
+            } catch (_) { return null }
+        }
+        function saveConsent(consent) {
+            consent.version = CONSENT_VERSION
+            consent.timestamp = Date.now()
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(consent))
+            } catch (_) {}
+            if (typeof window.dispatchEvent === 'function') {
+                window.dispatchEvent(new CustomEvent('forcex_cookie_consent_updated', { detail: consent }))
+            }
+        }
+        const banner = document.getElementById('cookie-consent-banner')
+        const modal = document.getElementById('cookie-consent-modal')
+        const backdrop = document.getElementById('cookie-consent-modal-backdrop')
+        const showBanner = () => { if (banner) banner.removeAttribute('hidden') }
+        const hideBanner = () => { if (banner) banner.setAttribute('hidden', '') }
+        const showModal = () => {
+            if (!modal) return
+            const c = getStoredConsent() || defaultConsent
+            const analytics = document.getElementById('cookie-toggle-analytics')
+            const marketing = document.getElementById('cookie-toggle-marketing')
+            const functional = document.getElementById('cookie-toggle-functional')
+            if (analytics) analytics.checked = c.analytics
+            if (marketing) marketing.checked = c.marketing
+            if (functional) functional.checked = c.functional
+            modal.removeAttribute('hidden')
+            document.body.style.overflow = 'hidden'
+            const focusable = modal.querySelector('button, [href], input:not([disabled])')
+            if (focusable) focusable.focus()
+        }
+        const hideModal = () => {
+            if (modal) modal.setAttribute('hidden', '')
+            document.body.style.overflow = ''
+        }
+        function acceptAll() {
+            saveConsent({
+                necessary: true,
+                analytics: true,
+                marketing: true,
+                functional: true
+            })
+            hideBanner()
+            hideModal()
+        }
+        function rejectNonEssential() {
+            saveConsent({
+                necessary: true,
+                analytics: false,
+                marketing: false,
+                functional: false
+            })
+            hideBanner()
+            hideModal()
+        }
+        function savePreferences() {
+            const analytics = document.getElementById('cookie-toggle-analytics')
+            const marketing = document.getElementById('cookie-toggle-marketing')
+            const functional = document.getElementById('cookie-toggle-functional')
+            saveConsent({
+                necessary: true,
+                analytics: !!(analytics && analytics.checked),
+                marketing: !!(marketing && marketing.checked),
+                functional: !!(functional && functional.checked)
+            })
+            hideBanner()
+            hideModal()
+        }
+        if (document.getElementById('cookie-consent-accept')) {
+            document.getElementById('cookie-consent-accept').addEventListener('click', acceptAll)
+        }
+        if (document.getElementById('cookie-consent-reject')) {
+            document.getElementById('cookie-consent-reject').addEventListener('click', rejectNonEssential)
+        }
+        if (document.getElementById('cookie-consent-manage')) {
+            document.getElementById('cookie-consent-manage').addEventListener('click', () => { showModal(); hideBanner() })
+        }
+        if (document.getElementById('cookie-consent-modal-close')) {
+            document.getElementById('cookie-consent-modal-close').addEventListener('click', hideModal)
+        }
+        if (backdrop) backdrop.addEventListener('click', hideModal)
+        if (document.getElementById('cookie-consent-save')) {
+            document.getElementById('cookie-consent-save').addEventListener('click', savePreferences)
+        }
+        if (document.getElementById('cookie-consent-accept-all-modal')) {
+            document.getElementById('cookie-consent-accept-all-modal').addEventListener('click', acceptAll)
+        }
+        modal && modal.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') hideModal()
+        })
+        const consent = getStoredConsent()
+        const urlOpensSettings = /cookie-settings/i.test(window.location.pathname) || window.location.hash === '#cookie-settings'
+        if (!consent) {
+            if (urlOpensSettings) {
+                showBanner()
+                showModal()
+            } else {
+                showBanner()
+            }
+        } else if (urlOpensSettings) {
+            showModal()
+        }
+        window.openCookieSettings = function () {
+            showModal()
+            const c = getStoredConsent()
+            if (!c) showBanner()
+        }
+        window.getCookieConsent = getStoredConsent
+        document.body.addEventListener('click', (e) => {
+            const a = e.target && (e.target.closest ? e.target.closest('a') : null)
+            if (a && a.getAttribute('href') && a.getAttribute('href').indexOf('cookie-settings') !== -1) {
+                e.preventDefault()
+                window.openCookieSettings()
+            }
+        })
+    })()
+
     // Debug: Add a test button to verify JavaScript is working (remove in production)
     // const testButton = document.createElement('button')
     // testButton.textContent = 'Test JS'
@@ -148,7 +284,18 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenu.classList.toggle('hidden')
         })
     }
-    
+
+    // Footer nav accordion (mobile): toggle expand/collapse on button click
+    document.querySelectorAll('.footer-nav-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const column = this.closest('.footer-nav-column')
+            if (!column) return
+            const expanded = column.getAttribute('aria-expanded') === 'true'
+            column.setAttribute('aria-expanded', expanded ? 'false' : 'true')
+            this.setAttribute('aria-expanded', expanded ? 'false' : 'true')
+        })
+    })
+
     // Desktop Navigation Dropdown Management
     function manageNavigationDropdown() {
         // Only run on desktop (md and up)
@@ -778,7 +925,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add success checkmark animation
                 const checkmark = document.createElement('div')
                 checkmark.className = 'success-checkmark'
-                checkmark.innerHTML = '✓'
+                checkmark.innerHTML = 'âœ“'
                 stepElement.appendChild(checkmark)
                 
                 // Remove checkmark after animation
@@ -1437,21 +1584,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Update shipping cost - use innerHTML to render HTML properly
                     const shippingElement = document.getElementById('delivery-cost')
                     if (shippingElement) {
-                        const shippingTotal = data.data.formatted_shipping_total || data.data.shipping_total || '—'
+                        const shippingTotal = data.data.formatted_shipping_total || data.data.shipping_total || 'â€”'
                         shippingElement.innerHTML = shippingTotal
                     }
                     
                     // Update tax - use innerHTML to render HTML properly
                     const taxElement = document.getElementById('tax-amount')
                     if (taxElement) {
-                        const taxTotal = data.data.formatted_tax_total || data.data.tax_total || '—'
+                        const taxTotal = data.data.formatted_tax_total || data.data.tax_total || 'â€”'
                         taxElement.innerHTML = taxTotal
                     }
                     
                     // Update total - use innerHTML to render HTML properly
                     const totalElement = document.getElementById('checkout-total')
                     if (totalElement) {
-                        const orderTotal = data.data.formatted_order_total || data.data.order_total || '—'
+                        const orderTotal = data.data.formatted_order_total || data.data.order_total || 'â€”'
                         totalElement.innerHTML = orderTotal
                     }
                 }
@@ -2241,17 +2388,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSliderPrev = document.getElementById('hero-slider-prev')
     const heroSliderNext = document.getElementById('hero-slider-next')
     const heroSliderCounter = document.getElementById('hero-slider-counter')
+    const heroSliderIndicators = document.getElementById('hero-slider-indicators')
     
     if (heroSliderTrack && heroSliderPrev && heroSliderNext && heroSliderCounter) {
+        const heroSlider = document.querySelector('.hero-product-slider')
         let currentSlide = 0
         const slides = heroSliderTrack.querySelectorAll('.slider-slide')
         const totalSlides = slides.length
         
-        // Update slider position
+        // Update slider position, desktop counter, and mobile indicators
         function updateSlider() {
             const translateX = -currentSlide * 100
             heroSliderTrack.style.transform = `translateX(${translateX}%)`
-            heroSliderCounter.textContent = `${currentSlide + 1} / ${totalSlides}`
+            const counterNum = heroSliderCounter.querySelector('.slider-counter-number')
+            if (counterNum) {
+                counterNum.textContent = currentSlide + 1
+            } else {
+                heroSliderCounter.textContent = `${currentSlide + 1} / ${totalSlides}`
+            }
+            if (heroSliderIndicators) {
+                heroSliderIndicators.querySelectorAll('.hero-slider-indicator').forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentSlide)
+                })
+            }
         }
         
         // Next slide
@@ -2266,8 +2425,17 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSlider()
         })
         
-        // Add touch/swipe support for mobile
-        const heroSlider = document.querySelector('.hero-product-slider')
+        // Mobile indicators: click to go to slide
+        if (heroSliderIndicators) {
+            heroSliderIndicators.querySelectorAll('.hero-slider-indicator').forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    currentSlide = i
+                    updateSlider()
+                })
+            })
+        }
+        
+        // Touch/swipe support for mobile
         if (heroSlider) {
             let touchStartX = 0
             let touchEndX = 0
@@ -2305,7 +2473,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000) // Change slide every 5 seconds
         
         // Pause auto-play on hover
-        const heroSlider = document.querySelector('.hero-product-slider')
         if (heroSlider) {
             heroSlider.addEventListener('mouseenter', () => {
                 clearInterval(autoPlayInterval)
@@ -2323,6 +2490,116 @@ document.addEventListener('DOMContentLoaded', function() {
         updateSlider()
     }
     
+    // Tech Widget Sliders (home + any page with tech-widget-mobile)
+    document.querySelectorAll('.tech-widget-mobile').forEach((mobileBlock) => {
+        const track = mobileBlock.querySelector('.tech-widget-slider-track')
+        const prevBtn = mobileBlock.querySelector('.tech-widget-prev')
+        const nextBtn = mobileBlock.querySelector('.tech-widget-next')
+        const indicatorsEl = mobileBlock.querySelector('.tech-widget-indicators')
+        const container = mobileBlock.querySelector('.tech-widget-slider-container')
+        if (!track || !nextBtn) return
+
+        const slides = track.querySelectorAll('.tech-widget-slide')
+        const totalSlides = slides.length
+        if (totalSlides === 0) return
+
+        let currentSlide = 0
+
+        function updateTechWidgetSlider() {
+            track.style.transform = `translateX(${-currentSlide * 100}%)`
+            if (indicatorsEl) {
+                indicatorsEl.querySelectorAll('.tech-widget-indicator').forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentSlide)
+                })
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides
+            updateTechWidgetSlider()
+        })
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1
+                updateTechWidgetSlider()
+            })
+        }
+
+        if (indicatorsEl) {
+            indicatorsEl.querySelectorAll('.tech-widget-indicator').forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    currentSlide = i
+                    updateTechWidgetSlider()
+                })
+            })
+        }
+
+        if (container) {
+            let touchStartX = 0
+            let touchEndX = 0
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX
+            }, { passive: true })
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX
+                const diff = touchStartX - touchEndX
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) currentSlide = (currentSlide + 1) % totalSlides
+                    else currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1
+                    updateTechWidgetSlider()
+                }
+            }, { passive: true })
+        }
+
+        updateTechWidgetSlider()
+    })
+
+    // Products Section mobile slider (Our Products on home)
+    const productsMobile = document.querySelector('.products-mobile')
+    if (productsMobile) {
+        const productsTrack = document.getElementById('products-slider-track')
+        const productsIndicators = document.getElementById('products-indicators')
+        const productsContainer = productsMobile.querySelector('.products-slider-container')
+        if (productsTrack && productsIndicators) {
+            const slides = productsTrack.querySelectorAll('.products-slide')
+            const totalSlides = slides.length
+            let currentSlide = 0
+
+            function updateProductsSlider() {
+                productsTrack.style.transform = `translateX(${-currentSlide * 100}%)`
+                productsIndicators.querySelectorAll('.products-indicator').forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentSlide)
+                })
+            }
+
+            productsIndicators.querySelectorAll('.products-indicator').forEach((ind, i) => {
+                ind.addEventListener('click', () => {
+                    currentSlide = i
+                    updateProductsSlider()
+                })
+            })
+
+            if (productsContainer) {
+                let touchStartX = 0
+                let touchEndX = 0
+                productsContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX
+                }, { passive: true })
+                productsContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX
+                    const diff = touchStartX - touchEndX
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) currentSlide = (currentSlide + 1) % totalSlides
+                        else currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1
+                        updateProductsSlider()
+                    }
+                }, { passive: true })
+            }
+
+            updateProductsSlider()
+        }
+    }
+
     // Reviews Slider
     const reviewsSliderTrack = document.getElementById('reviews-slider-track')
     const reviewsSliderPrev = document.getElementById('reviews-slider-prev')
@@ -2593,8 +2870,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 250)
         })
         
-        // Add touch/swipe support for mobile
-        const homeReviewsContainer = document.querySelector('.reviews-slider-container, .testimonials-section')
+        // Add touch/swipe support for mobile (swipe on mobile reviews area)
+        const homeReviewsContainer = document.querySelector('.home-reviews-mobile') || document.querySelector('.reviews-slider-container, .testimonials-section')
         if (homeReviewsContainer) {
             let touchStartX = 0
             let touchEndX = 0
